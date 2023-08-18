@@ -4,8 +4,12 @@ import axios from "axios";
 const App = () => {
   const [quizz, SetQuizz] = useState(false);
   const [reload, SetReload] = useState(true);
-  const [randpoke, SetRandPoke] = useState('');
-  const [ pokemonName, SetPokemonName ] = useState('');
+
+  const [pokemonName, SetPokemonName] = useState('');
+
+  const [anwser, SetAnwser] = useState('');
+  const [correct, SetCorrect] = useState(true);
+  const [result, SetResult] = useState(false);
 
   const Show = (stateToChange, SetStateToChange) => {
     !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
@@ -30,6 +34,23 @@ const App = () => {
       )
   }, [reload])
 
+  const Comparaison = () => {
+    if (anwser === pokemonName) {
+      console.log('WIN')
+      SetCorrect(true)
+      SetResult(true)
+    } else {
+      console.log('LOSE')
+      SetCorrect(false)
+      SetResult(true)
+    }
+  }
+
+  const Next = () => {
+      SetAnwser('zdqzd')
+      SetResult(false) 
+      SetReload(!reload)
+  }
 
   return (
     <div className="container">
@@ -38,9 +59,25 @@ const App = () => {
         <button onClick={(e) => { Show(quizz, SetQuizz) }}>Start the quizz</button>
       </div>
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
-        <button onClick={(e) => { Show(reload, SetReload) }}>random</button>
-        <div>pokemon: {pokemonName}  </div>
         <button onClick={(e) => { Show(quizz, SetQuizz) }}>go back</button>
+
+        {/* <button onClick={(e) => { Show(reload, SetReload) }}>random</button> */}
+        <div>Who's that pokémon ?  </div>
+        <input
+          onChange={(e) => { SetAnwser(e.target.value) }}
+        />
+        <button onClick={Comparaison}  style={{ display: result ? 'none' : 'block' }} >Answer</button>
+        {result &&
+          <>
+            <div >
+              <p style={{ color: correct ? 'green' : 'red' }}>{pokemonName}</p>
+            </div>
+            <button onClick={Next} >Next</button>
+
+          </>
+        }
+
+
       </div>
     </div>
   );
