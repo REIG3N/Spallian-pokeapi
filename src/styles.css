@@ -29,9 +29,9 @@ footer{
 }
 
 
-.container {
+.appContainer {
   min-width: 320px;
-  padding-bottom:310px;
+  height: 588px;  
   background-image:url('./assets/image/background.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -48,10 +48,31 @@ footer{
   }
 }
 
+.quizzContainer{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  @media screen and (min-width:720px){
+    flex-direction: row;
+  }
+}
+
+.quizzHeader{
+  display:flex;
+
+  justify-content:space-between;
+  align-items: center;
+}
+.returnButton{
+  border:none;
+  background-color: transparent;
+}
+
 .imageDiv{
   background-color:white;
   min-width: 300px;
-  margin-top: 20px;
   border: 5px solid  rgb(48,48,48);
 }
 
@@ -61,7 +82,8 @@ footer{
   justify-content:center;
   text-align: center;
   align-items: center;
-  margin:40px
+  margin-left :40px;
+  margin-right :40px
 }
 .questionSection{
   display: flex;
@@ -80,10 +102,10 @@ footer{
 .anwserInput{
 
   width: 280px;
-  border-top: 3px  solid rgb(96,96,192);
-  border-bottom: 3px solid rgb(96,96,192);
-  border-left: 5px  solid rgb(96,96,192);
-  border-right: 5px solid rgb(96,96,192);
+  border-top: 3px  solid black;
+  border-bottom: 3px solid black;
+  border-left: 5px  solid black;
+  border-right: 5px solid black;
   margin-top: 10px;
 
 }
@@ -104,8 +126,6 @@ width: 293px;
 height: 40px;
 border: none;
 
-
-
 cursor:pointer;
 }
 
@@ -117,8 +137,7 @@ cursor:pointer;
 .resultDiv{
   flex-direction: column;
   background-color: lightgray;
-  width: 280px;
-  border: 1px solid black;
+  width: 293px;
 }
 
 .Button{
@@ -128,7 +147,7 @@ cursor:pointer;
 
   height: 45px;
   width: 90px;
-  margin-top: 20px;
+  margin-top: 10px;
 
 
 }

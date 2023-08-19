@@ -66,59 +66,61 @@ const App = () => {
 
 
   return (
-    <div className="container" >
-      {/* <div className="titleScreen" style={{ display: quizz ? 'none' : 'block' }}>
+    <div className="appContainer" >
+      <div className="titleScreen" style={{ display: quizz ? 'none' : 'block' }}>
         <h1>PokéQuizz</h1>
-        <button onClick={(e) => { Show(quizz, SetQuizz) }}>Start the quizz</button>
+        <button onClick={(e) => { Show(quizz, SetQuizz) }} >Start the quizz</button>
       </div>
 
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
-        <button onClick={(e) => { Show(quizz, SetQuizz) }}  className="Button">Return</button> */}
-
-
-      <div className="imageDiv">
-        <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
-      </div>
-
-      <div className="FormDiv">
-        <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
-          <h3 className="questionText">Who's that pokémon ?</h3>
-          <input
-            
-            className="anwserInput"
-            value={anwser}
-            onChange={(e) => { SetAnwser(e.target.value) }}
-          />
-          <button onClick={Comparaison} className="Button">Answer</button>
+        <div className="quizzContainer">
+        <div>
+          <div className="quizzHeader">
+            <button onClick={(e) => { Show(quizz, SetQuizz) }} className="returnButton">Return</button>
+            <h2>PokéQuizz</h2>
+            <p>5/5</p>
+          </div>
+          <div className="imageDiv">
+            <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
+          </div>
         </div>
 
-        <div className="resultSection">
-        {result &&
-          <>
-            <div >
-              <button
-                onClick={(e) => { Show(resultDiv, SetResultDiv) }}
-                className='resultButton' style={{ color: correct ? 'green' : 'red' }}>
-                <img src={downArrow} className="downArrow" />
-                It's {pokemonName}
-                <img src={downArrow} className="downArrow" />
-              </button>
-              <div style={{ display: resultDiv ? 'flex' : 'none' }} className="resultDiv">
-                <p>{pokemonType1} {pokemonType2}</p>
-                <p>{pokemonAbilities}</p>
-              </div>
-            </div>
-            <button onClick={Next} className="Button">Next</button>
-          </>
-        }
+
+        <div className="FormDiv">
+          <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
+            <h3 className="questionText">Who's that pokémon ?</h3>
+            <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
+            <button onClick={Comparaison} className="Button">Answer</button>
+          </div>
+          <div className="resultSection">
+            {result &&
+              <>
+                <div >
+                  <button
+                    onClick={(e) => { Show(resultDiv, SetResultDiv) }}
+                    className='resultButton' style={{ color: correct ? 'green' : 'red' }}>
+                    <img src={downArrow} className="downArrow" />
+                    It's {pokemonName}
+                    <img src={downArrow} className="downArrow" />
+                  </button>
+                  <div style={{ display: resultDiv ? 'flex' : 'none' }} className="resultDiv">
+                    <p>{pokemonType1} {pokemonType2}</p>
+                    <p>{pokemonAbilities}</p>
+                  </div>
+                </div>
+                <button onClick={Next} className="Button">Next</button>
+              </>
+            }
+          </div>
         </div>
       </div>
+
+        </div>
+        
+
+
+
     </div>
-
-
-
-
-    // </div>
   );
 }
 
