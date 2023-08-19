@@ -1,9 +1,31 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import downArrow from "./assets/image/downArrow.png"
+import UpArrow from "./assets/image/UpArrow.png"
 import titleScreen from "./assets/image/title.png"
 
 const App = () => {
+
+  const typeImages = {
+    water: require("./assets/image/water.png"),
+    normal: require("./assets/image/normal.png"),
+    fire: require("./assets/image/fire.png"),
+    electric: require("./assets/image/electric.png"),
+    grass: require("./assets/image/grass.png"),
+    dark: require("./assets/image/dark.png"),
+    fighting: require("./assets/image/fighting.png"),
+    psychic: require("./assets/image/psychic.png"),
+    poison: require("./assets/image/poison.png"),
+    steel: require("./assets/image/steel.png"),
+    fairy: require("./assets/image/fairy.png"),
+    dragon: require("./assets/image/dragon.png"),
+    ice: require("./assets/image/ice.png"),
+    ground: require("./assets/image/ground.png"),
+    bug: require("./assets/image/bug.png"),
+    ghost: require("./assets/image/ghost.png"),
+    rock: require("./assets/image/rock.png"),
+    flying: require("./assets/image/flying.png"),
+  };
   const [quizz, SetQuizz] = useState(false);
   const [reload, SetReload] = useState(true);
 
@@ -11,7 +33,7 @@ const App = () => {
   const [pokemonName, SetPokemonName] = useState('');
   const [pokemonSprites, SetPokemonSprites] = useState('')
   const [pokemonType1, SetPokemonType1] = useState("");
-  const [pokemonType2, SetPokemonType2] = useState([]);
+  const [pokemonType2, SetPokemonType2] = useState("");
   const [pokemonAbilities, SetPokemonAbilities] = useState([]);
 
   const [anwser, SetAnwser] = useState('');
@@ -52,10 +74,10 @@ const App = () => {
     SetEndQuizz(false)
     SetScore(0)
     SetResult(false)
-
+    SetReload(!reload)
   }
 
-  const Comparaison = () => {
+  const Enter = () => {
     SetResult(true)
     SetAnwser('')
     if (anwser === pokemonName) {
@@ -80,10 +102,6 @@ const App = () => {
       SetEndQuizz(true)
     }
   }
-  
-  
-
-
 
 
   return (
@@ -93,7 +111,7 @@ const App = () => {
           <img src={titleScreen} className="titleScreen" />
 
         </div>
-        <button onClick={Start} className='Button' >Start the quizz</button>
+        <button onClick={Start} className='Button' >START</button>
       </div>
 
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
@@ -114,7 +132,7 @@ const App = () => {
             <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
               <h3 className="text">Who's that pokémon ?</h3>
               <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
-              <button onClick={Comparaison} className="Button">Answer</button>
+              <button onClick={Enter} className="Button">ENTER</button>
             </div>
             <div className="resultSection">
               {result && !endQuizz &&
@@ -123,24 +141,25 @@ const App = () => {
                     <button
                       onClick={(e) => { Show(resultDiv, SetResultDiv) }}
                       className='resultButton' style={{ color: correct ? 'green' : 'red' }}>
-                      <img src={downArrow} className="downArrow" />
+                      <img src={resultDiv ? UpArrow : downArrow} className="downArrow" />
                       It's {pokemonName}
-                      <img src={downArrow} className="downArrow" />
+                      <img src={resultDiv ? UpArrow : downArrow} className="downArrow" />
                     </button>
                     <div style={{ display: resultDiv ? 'flex' : 'none' }} className="resultDiv">
-                      <p>{pokemonType1} {pokemonType2}</p>
+                      <img className="Img" src={typeImages[pokemonType1]} />
+                      <img className="Img" src={typeImages[pokemonType2]} />
                       <p>{pokemonAbilities}</p>
                     </div>
                   </div>
-                  <button onClick={Next} className="Button">Next</button>
+                  <button onClick={Next} className="Button">NEXT</button>
                 </>
               }
             </div>
           </div>
           {endQuizz && !result &&
             <div className="endQuizz">
-              <h3 className="text">"You got {score} out of 5 correct answers !</h3>
-              <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button' >Try again</button>
+              <h3>You got {score} out of 5 correct answers !</h3>
+              <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button'>RESTART</button>
 
             </div>
           }

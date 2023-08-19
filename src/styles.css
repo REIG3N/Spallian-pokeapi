@@ -93,15 +93,13 @@ footer{
   @media screen and (max-width:1100px){
     color: white;
   }
-
 }
 
-.returnButtonImg{
-  width: 20px;
-  height:20px;
+.Img{
+  width: 50px;
   display:flex;
   align-items: center;
-
+  mix-blend-mode: multiply;
 }
 
 .imageDiv{
@@ -136,7 +134,6 @@ footer{
 
 
 .anwserInput{
-
   width: 280px;
   border-top: 3px  solid black;
   border-bottom: 3px solid black;
@@ -160,8 +157,9 @@ background-color: lightgray;
 
 width: 293px;
 height: 40px;
-border: none;
+font-size: 20px;
 
+border: none;
 cursor:pointer;
 }
 
