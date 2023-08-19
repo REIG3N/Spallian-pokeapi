@@ -6,6 +6,9 @@ const App = () => {
   const [reload, SetReload] = useState(true);
 
   const [pokemonName, SetPokemonName] = useState('');
+  const [pokemonTypes, SetPokemonTypes] = useState([]);
+  const [pokemonSprites, SetPokemonSprites] = useState('');
+  const [pokemonAbilities, SetPokemonAbilities] = useState([]);
 
   const [anwser, SetAnwser] = useState('');
   const [correct, SetCorrect] = useState(true);
@@ -24,12 +27,12 @@ const App = () => {
         const name = response.data.name;
         console.log(name)
         SetPokemonName(response.data.name)
-        const abilities = response.data.abilities.map(ability => ability.ability.name);
-        console.log(abilities)
-        const types = response.data.types.map(type => type.type.name);
-        console.log(types)
+        const types = response.data.types.map(type => type.type.name); console.log(types)
+        SetPokemonTypes(types)
         const sprites = response.data.sprites.front_default
-        console.log(sprites)
+        SetPokemonSprites(sprites)
+        const abilities = response.data.abilities.map(ability => ability.ability.name);
+        SetPokemonAbilities(abilities)
       }
       )
   }, [reload])
@@ -64,18 +67,31 @@ const App = () => {
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <button onClick={(e) => { Show(quizz, SetQuizz) }}>go back</button>
 
+
+        <div style={{display: 'flex' }}>
+          <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' :'brightness(0)' }} />
+        </div>
+
         <div>Who's that pokémon ?</div>
-          <input
+        <input
           value={anwser}
-            onChange={(e) => { SetAnwser(e.target.value) }}
-          />
+          onChange={(e) => { SetAnwser(e.target.value) }}
+        />
 
         <button onClick={Comparaison} style={{ display: result ? 'none' : 'block' }} >Answer</button>
         {result &&
           <>
             <div >
               <p style={{ color: correct ? 'green' : 'red' }}>{pokemonName}</p>
+              <div style={{ backgroundColor: 'lightblue' }}>
+                <p>{pokemonTypes}</p>
+                <p>{pokemonAbilities}</p>
+              </div>
             </div>
+
+
+
+
             <button onClick={Next} >Next</button>
 
           </>
