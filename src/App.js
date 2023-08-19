@@ -1,34 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import downArrow from "./assets/image/downArrow.png"
-import UpArrow from "./assets/image/UpArrow.png"
-import titleScreen from "./assets/image/title.png"
+
+import ResultSection from "./components/ResultSection.js"
+import EndQuizz from "./components/EndQuizz.js"
+import QuestionSection from "./components/QuestionSection.js"
+import QuizzSection from "./components/QuizzSection.js"
+import TitleScreenSection from "./components/TitleScreenSection.js"
 
 const App = () => {
-
-  const typeImages = {
-    water: require("./assets/image/water.png"),
-    normal: require("./assets/image/normal.png"),
-    fire: require("./assets/image/fire.png"),
-    electric: require("./assets/image/electric.png"),
-    grass: require("./assets/image/grass.png"),
-    dark: require("./assets/image/dark.png"),
-    fighting: require("./assets/image/fighting.png"),
-    psychic: require("./assets/image/psychic.png"),
-    poison: require("./assets/image/poison.png"),
-    steel: require("./assets/image/steel.png"),
-    fairy: require("./assets/image/fairy.png"),
-    dragon: require("./assets/image/dragon.png"),
-    ice: require("./assets/image/ice.png"),
-    ground: require("./assets/image/ground.png"),
-    bug: require("./assets/image/bug.png"),
-    ghost: require("./assets/image/ghost.png"),
-    rock: require("./assets/image/rock.png"),
-    flying: require("./assets/image/flying.png"),
-  };
   const [quizz, SetQuizz] = useState(false);
   const [reload, SetReload] = useState(true);
-
 
   const [pokemonName, SetPokemonName] = useState('');
   const [pokemonSprites, SetPokemonSprites] = useState('')
@@ -68,110 +49,81 @@ const App = () => {
       )
   }, [reload])
 
-  const Start = () => {
-    Show(quizz, SetQuizz)
-    SetRound(1)
-    SetEndQuizz(false)
-    SetScore(0)
-    SetResult(false)
-    SetReload(!reload)
-  }
-
-  const Enter = () => {
-    SetResult(true)
-    SetAnwser('')
-    if (anwser === pokemonName) {
-      console.log('WIN')
-      SetCorrect(true)
-      SetScore(score + 1)
-    } else {
-      console.log('LOSE')
-      SetCorrect(false)
-    }
-  }
-
-  const Next = () => {
-    SetReload(!reload)
-    SetResult(false)
-    SetResultDiv(false)
-    SetAnwser('')
-    SetRound(round + 1)
-    if (round === 5) {
-      console.log("----END OF THE QUIZZ----")
-      SetRound(1)
-      SetEndQuizz(true)
-    }
-  }
-
 
   return (
     <div className="appContainer" >
-      <div className="menuScreen" style={{ display: quizz ? 'none' : 'block' }}>
-        <div>
-          <img src={titleScreen} className="titleScreen" />
 
-        </div>
-        <button onClick={Start} className='Button' >START</button>
+      <div className="menuScreen" style={{ display: quizz ? 'none' : 'block' }}>
+        <TitleScreenSection 
+        Show={Show}
+        quizz={quizz}
+        SetQuizz={SetQuizz}
+        SetRound={SetRound}
+        SetEndQuizz={SetEndQuizz}
+        SetScore={SetScore}
+        SetResult={SetResult}
+        SetReload={SetReload}
+        reload={reload}
+        />
       </div>
 
-      <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
+
+      <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <div className="quizzContainer"  >
-          <div style={{ display: endQuizz ? 'none' : 'block' }}>
-            <div className="quizzHeader">
-              <button onClick={(e) => { Show(quizz, SetQuizz) }} className="returnButton">Return</button>
-              <h2 className="text">PokéQuizz</h2>
-              <p>({round}/5)</p>
-            </div>
-            <div className="imageDiv">
-              <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
-            </div>
+          <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
+            <QuizzSection
+              Show={Show}
+              quizz={quizz}
+              SetQuizz={SetQuizz}
+              round={round}
+              pokemonSprites={pokemonSprites}
+              result={result}
+              />
           </div>
-
-
           <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
-            <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
-              <h3 className="text">Who's that pokémon ?</h3>
-              <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
-              <button onClick={Enter} className="Button">ENTER</button>
-            </div>
+            <QuestionSection
+              result={result}
+              anwser={anwser}
+              SetAnwser={SetAnwser}
+              SetResult={SetResult}
+              pokemonName={pokemonName}
+              SetCorrect={SetCorrect}
+              SetScore={SetScore}
+              score={score}
+            />
             <div className="resultSection">
               {result && !endQuizz &&
-                <>
-                  <div >
-                    <button
-                      onClick={(e) => { Show(resultDiv, SetResultDiv) }}
-                      className='resultButton' style={{ color: correct ? 'green' : 'red' }}>
-                      <img src={resultDiv ? UpArrow : downArrow} className="downArrow" />
-                      It's {pokemonName}
-                      <img src={resultDiv ? UpArrow : downArrow} className="downArrow" />
-                    </button>
-                    <div style={{ display: resultDiv ? 'flex' : 'none' }} className="resultDiv">
-                      <img className="Img" src={typeImages[pokemonType1]} />
-                      <img className="Img" src={typeImages[pokemonType2]} />
-                      <p>{pokemonAbilities}</p>
-                    </div>
-                  </div>
-                  <button onClick={Next} className="Button">NEXT</button>
-                </>
+                <ResultSection
+                  Show={Show}
+                  resultDiv={resultDiv}
+                  SetResultDiv={SetResultDiv}
+                  correct={correct}
+                  pokemonName={pokemonName}
+                  pokemonType1={pokemonType1}
+                  pokemonType2={pokemonType2}
+                  pokemonAbilities={pokemonAbilities}
+                  SetResult={SetResult}
+                  SetReload={SetReload}
+                  reload={reload}
+                  SetAnwser={SetAnwser}
+                  SetRound={SetRound}
+                  round={round}
+                  SetEndQuizz={SetEndQuizz}
+                />
               }
             </div>
           </div>
           {endQuizz && !result &&
-            <div className="endQuizz">
-              <h3>You got {score} out of 5 correct answers !</h3>
-              <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button'>RESTART</button>
-
-            </div>
+            <EndQuizz
+              score={score}
+              Show={Show}
+              quizz={quizz}
+              SetQuizz={SetQuizz}
+            />
           }
         </div>
-
       </div>
-
-
-
-
     </div>
   );
 }
-
 export default App;
