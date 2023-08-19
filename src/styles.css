@@ -9,6 +9,32 @@ body {
 }
 
 .container {
-  text-align: center; 
 }
 
+
+
+.resultButton{
+display: flex;
+justify-content:space-around;
+align-items: center;
+
+background-color: lightgray;
+
+width: 280px;
+height: 40px;
+border: none;
+
+cursor:pointer;
+}
+
+.downArrow{
+  width: 12px;
+}
+
+
+.resultDiv{
+  flex-direction: column;
+  background-color: lightgray;
+  width: 280px;
+  border: 1px solid black;
+}
