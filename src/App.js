@@ -35,22 +35,24 @@ const App = () => {
   }, [reload])
 
   const Comparaison = () => {
+    SetResult(true)
     if (anwser === pokemonName) {
       console.log('WIN')
       SetCorrect(true)
-      SetResult(true)
     } else {
       console.log('LOSE')
       SetCorrect(false)
-      SetResult(true)
     }
   }
 
   const Next = () => {
-      SetAnwser('zdqzd')
-      SetResult(false) 
-      SetReload(!reload)
+    SetReload(!reload)
+    SetResult(false)
+    SetAnwser('')
+
   }
+
+
 
   return (
     <div className="container">
@@ -58,15 +60,17 @@ const App = () => {
         <h1>PokéQuizz</h1>
         <button onClick={(e) => { Show(quizz, SetQuizz) }}>Start the quizz</button>
       </div>
+
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <button onClick={(e) => { Show(quizz, SetQuizz) }}>go back</button>
 
-        {/* <button onClick={(e) => { Show(reload, SetReload) }}>random</button> */}
-        <div>Who's that pokémon ?  </div>
-        <input
-          onChange={(e) => { SetAnwser(e.target.value) }}
-        />
-        <button onClick={Comparaison}  style={{ display: result ? 'none' : 'block' }} >Answer</button>
+        <div>Who's that pokémon ?</div>
+          <input
+          value={anwser}
+            onChange={(e) => { SetAnwser(e.target.value) }}
+          />
+
+        <button onClick={Comparaison} style={{ display: result ? 'none' : 'block' }} >Answer</button>
         {result &&
           <>
             <div >
