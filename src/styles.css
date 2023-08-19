@@ -47,6 +47,18 @@ footer{
 
   }
 }
+.menuScreen{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+}
+
+.titleScreen{
+  width:320px;
+  margin-bottom:50px;
+  filter:  brightness(0.7); 
+}
 
 .quizzContainer{
   display: flex;
