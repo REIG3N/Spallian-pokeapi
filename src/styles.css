@@ -24,7 +24,7 @@ footer{
   border-top: 10px solid black;
   position: fixed;
   bottom:0;
-  margin-top: 20px;
+  margin-top: 60px;
 
 }
 
@@ -60,14 +60,36 @@ footer{
 }
 
 .quizzHeader{
+  
   display:flex;
-
   justify-content:space-between;
   align-items: center;
+  text-align: center;
+
+  @media screen and (max-width:1100px){
+    color: white;
+
+  }
 }
 .returnButton{
   border:none;
   background-color: transparent;
+  display:flex;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  @media screen and (max-width:1100px){
+    color: white;
+  }
+
+}
+
+.returnButtonImg{
+  width: 20px;
+  height:20px;
+  display:flex;
+  align-items: center;
+
 }
 
 .imageDiv{
@@ -95,7 +117,9 @@ footer{
 }
 
 .questionText{
-
+  @media screen and (max-width:720px){
+    color: white;
+  }
 }
 
 
@@ -138,6 +162,7 @@ cursor:pointer;
   flex-direction: column;
   background-color: lightgray;
   width: 293px;
+  height: 110px;
 }
 
 .Button{

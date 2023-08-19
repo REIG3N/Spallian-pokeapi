@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import downArrow from "./assets/image/downArrow.png"
+import returnArrow from "./assets/image/return.png"
 
 const App = () => {
   const [quizz, SetQuizz] = useState(false);
@@ -78,7 +79,7 @@ const App = () => {
           <div className="quizzHeader">
             <button onClick={(e) => { Show(quizz, SetQuizz) }} className="returnButton">Return</button>
             <h2>PokéQuizz</h2>
-            <p>5/5</p>
+            <p>(5/5)</p>
           </div>
           <div className="imageDiv">
             <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
