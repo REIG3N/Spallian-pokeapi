@@ -9,10 +9,8 @@ const App = () => {
 
   const [pokemonName, SetPokemonName] = useState('');
   const [pokemonSprites, SetPokemonSprites] = useState('')
-  const [pokemonTypes, SetPokemonTypes] = useState([]);
-  const [pokemonType1, SetPokemonType1] = useState([]);
+  const [pokemonType1, SetPokemonType1] = useState("");
   const [pokemonType2, SetPokemonType2] = useState([]);
-  ;
   const [pokemonAbilities, SetPokemonAbilities] = useState([]);
 
   const [anwser, SetAnwser] = useState('');
@@ -29,17 +27,12 @@ const App = () => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${randpoke}`)
       .then((response) => {
         console.log(response)
-        console.log(response.data.name)
         const name = response.data.name;
         console.log(name)
         SetPokemonName(name)
-        const types = response.data.types.map(type => type.type.name); console.log(types[0]); console.log(types[1])
-        SetPokemonTypes(types)
         const type1 = response.data.types[0].type.name;
-        console.log(type1)
         SetPokemonType1(type1)
         const type2 = response.data.types[1]?.type.name;
-        console.log(type2)
         SetPokemonType2(type2)
         const sprites = response.data.sprites.front_default
         SetPokemonSprites(sprites)
@@ -51,6 +44,8 @@ const App = () => {
 
   const Comparaison = () => {
     SetResult(true)
+    SetAnwser('')
+
     if (anwser === pokemonName) {
       console.log('WIN')
       SetCorrect(true)
@@ -71,54 +66,59 @@ const App = () => {
 
 
   return (
-    <div className="container">
-      <div className="titleScreen" style={{ display: quizz ? 'none' : 'block' }}>
+    <div className="container" >
+      {/* <div className="titleScreen" style={{ display: quizz ? 'none' : 'block' }}>
         <h1>PokéQuizz</h1>
         <button onClick={(e) => { Show(quizz, SetQuizz) }}>Start the quizz</button>
       </div>
 
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
-        <button onClick={(e) => { Show(quizz, SetQuizz) }}>go back</button>
+        <button onClick={(e) => { Show(quizz, SetQuizz) }}  className="Button">Return</button> */}
 
 
-        <div>
-          <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
+      <div className="imageDiv">
+        <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
+      </div>
+
+      <div className="FormDiv">
+        <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
+          <h3 className="questionText">Who's that pokémon ?</h3>
+          <input
+            
+            className="anwserInput"
+            value={anwser}
+            onChange={(e) => { SetAnwser(e.target.value) }}
+          />
+          <button onClick={Comparaison} className="Button">Answer</button>
         </div>
 
-        <div>Who's that pokémon ?</div>
-        <input
-          value={anwser}
-          onChange={(e) => { SetAnwser(e.target.value) }}
-        />
-
-        <button onClick={Comparaison} style={{ display: result ? 'none' : 'block' }} >Answer</button>
+        <div className="resultSection">
         {result &&
           <>
             <div >
               <button
                 onClick={(e) => { Show(resultDiv, SetResultDiv) }}
-                className='resultButton' style={{ color: correct ? 'green' : 'red'}}>
+                className='resultButton' style={{ color: correct ? 'green' : 'red' }}>
                 <img src={downArrow} className="downArrow" />
                 It's {pokemonName}
                 <img src={downArrow} className="downArrow" />
               </button>
               <div style={{ display: resultDiv ? 'flex' : 'none' }} className="resultDiv">
-              <p>{pokemonType1} {pokemonType2}</p>
-              <p>{pokemonAbilities}</p>
+                <p>{pokemonType1} {pokemonType2}</p>
+                <p>{pokemonAbilities}</p>
               </div>
             </div>
-
-
-
-
-            <button onClick={Next} >Next</button>
-
+            <button onClick={Next} className="Button">Next</button>
           </>
         }
-
-
+        </div>
       </div>
     </div>
+
+
+
+
+    // </div>
   );
 }
 

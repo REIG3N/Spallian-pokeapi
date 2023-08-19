@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   padding : 0;
@@ -8,10 +10,88 @@ body {
 
 }
 
-.container {
+.upperBar{
+  height: 50px;
+  width: 100%;
+  background-color: red;
+  border-bottom: 10px solid black;
+}
+
+footer{
+  height: 50px;
+  width: 100%;
+  background-color: lightgray;
+  border-top: 10px solid black;
+  position: fixed;
+  bottom:0;
+  margin-top: 20px;
+
 }
 
 
+.container {
+  min-width: 320px;
+  padding-bottom:310px;
+  background-image:url('./assets/image/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  @media screen and (min-width:720px){
+    flex-direction:row;
+
+  }
+}
+
+.imageDiv{
+  background-color:white;
+  min-width: 300px;
+  margin-top: 20px;
+  border: 5px solid  rgb(48,48,48);
+}
+
+.FormDiv{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  margin:40px
+}
+.questionSection{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  
+}
+
+.questionText{
+
+}
+
+
+.anwserInput{
+
+  width: 280px;
+  border-top: 3px  solid rgb(96,96,192);
+  border-bottom: 3px solid rgb(96,96,192);
+  border-left: 5px  solid rgb(96,96,192);
+  border-right: 5px solid rgb(96,96,192);
+  margin-top: 10px;
+
+}
+
+.resultSection{
+  margin-top: 30px;
+
+}
 
 .resultButton{
 display: flex;
@@ -20,9 +100,11 @@ align-items: center;
 
 background-color: lightgray;
 
-width: 280px;
+width: 293px;
 height: 40px;
 border: none;
+
+
 
 cursor:pointer;
 }
@@ -37,4 +119,16 @@ cursor:pointer;
   background-color: lightgray;
   width: 280px;
   border: 1px solid black;
+}
+
+.Button{
+  background-color: rgb(64,64,64);
+  color: white;
+  border: 5px solid rgb(48,48,48);
+
+  height: 45px;
+  width: 90px;
+  margin-top: 20px;
+
+
 }
