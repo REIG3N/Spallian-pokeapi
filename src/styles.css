@@ -128,7 +128,7 @@ footer{
   
 }
 
-.questionText{
+.text{
   @media screen and (max-width:720px){
     color: white;
   }
@@ -185,6 +185,9 @@ cursor:pointer;
   height: 45px;
   width: 90px;
   margin-top: 10px;
+}
 
-
+.endQuizz{
+  background-color:lightgray;
+  padding: 30px;
 }

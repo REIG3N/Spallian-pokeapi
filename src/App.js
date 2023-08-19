@@ -18,6 +18,9 @@ const App = () => {
   const [correct, SetCorrect] = useState(true);
   const [result, SetResult] = useState(false);
   const [resultDiv, SetResultDiv] = useState(false);
+  const [round, SetRound] = useState(1);
+  const [score, SetScore] = useState(0);
+  const [endQuizz, SetEndQuizz] = useState(false);
 
   const Show = (stateToChange, SetStateToChange) => {
     !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
@@ -43,13 +46,22 @@ const App = () => {
       )
   }, [reload])
 
+  const Start = () => {
+    Show(quizz, SetQuizz)
+    SetRound(1)
+    SetEndQuizz(false)
+    SetScore(0)
+    SetResult(false)
+
+  }
+
   const Comparaison = () => {
     SetResult(true)
     SetAnwser('')
-
     if (anwser === pokemonName) {
       console.log('WIN')
       SetCorrect(true)
+      SetScore(score + 1)
     } else {
       console.log('LOSE')
       SetCorrect(false)
@@ -61,8 +73,16 @@ const App = () => {
     SetResult(false)
     SetResultDiv(false)
     SetAnwser('')
-
+    SetRound(round + 1)
+    if (round === 5) {
+      console.log("----END OF THE QUIZZ----")
+      SetRound(1)
+      SetEndQuizz(true)
+    }
   }
+  
+  
+
 
 
 
@@ -73,16 +93,16 @@ const App = () => {
           <img src={titleScreen} className="titleScreen" />
 
         </div>
-        <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button' >Start the quizz</button>
+        <button onClick={Start} className='Button' >Start the quizz</button>
       </div>
 
       <div className="quizzDiv" style={{ display: quizz ? 'block' : 'none' }}>
-        <div className="quizzContainer">
-          <div>
+        <div className="quizzContainer"  >
+          <div style={{ display: endQuizz ? 'none' : 'block' }}>
             <div className="quizzHeader">
               <button onClick={(e) => { Show(quizz, SetQuizz) }} className="returnButton">Return</button>
-              <h2>PokéQuizz</h2>
-              <p>(5/5)</p>
+              <h2 className="text">PokéQuizz</h2>
+              <p>({round}/5)</p>
             </div>
             <div className="imageDiv">
               <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
@@ -90,14 +110,14 @@ const App = () => {
           </div>
 
 
-          <div className="FormDiv">
+          <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
             <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
-              <h3 className="questionText">Who's that pokémon ?</h3>
+              <h3 className="text">Who's that pokémon ?</h3>
               <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
               <button onClick={Comparaison} className="Button">Answer</button>
             </div>
             <div className="resultSection">
-              {result &&
+              {result && !endQuizz &&
                 <>
                   <div >
                     <button
@@ -117,6 +137,13 @@ const App = () => {
               }
             </div>
           </div>
+          {endQuizz && !result &&
+            <div className="endQuizz">
+              <h3 className="text">"You got {score} out of 5 correct answers !</h3>
+              <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button' >Try again</button>
+
+            </div>
+          }
         </div>
 
       </div>
