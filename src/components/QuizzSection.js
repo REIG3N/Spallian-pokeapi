@@ -16,7 +16,7 @@ export default function QuizzSection({
         <p>({round}/5)</p>
       </div>
       <div className="imageDiv">
-        <img src={pokemonSprites} style={{ width: '250px', height: '250px', mixBlendMode: "multiply", filter: result ? 'none' : 'brightness(0)' }} />
+        <img src={pokemonSprites} style={{ filter: result ? 'none' : 'brightness(0)' }} className="pokemonSprite"/>
       </div>
     </>
   )
