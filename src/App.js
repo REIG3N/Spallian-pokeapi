@@ -43,18 +43,19 @@ const App = () => {
         SetPokemonType2(type2)
         const sprites = response.data.sprites.front_default
         SetPokemonSprites(sprites)
-        const abilities = response.data.abilities.map(ability => ability.ability.name);
-        SetPokemonAbilities(abilities)
+        // const abilities = response.data.abilities.map(ability => ability.ability.name);
+        // SetPokemonAbilities(abilities)
       }
       )
   }, [reload])
 
 
-  return (
-    <div className="appContainer" >
+  return (<>
+
+  <div className="appContainer" >
 
       <div className="menuScreen" style={{ display: quizz ? 'none' : 'block' }}>
-        <TitleScreenSection 
+      <TitleScreenSection 
         Show={Show}
         quizz={quizz}
         SetQuizz={SetQuizz}
@@ -70,18 +71,19 @@ const App = () => {
 
       <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <div className="quizzContainer"  >
-          <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
-            <QuizzSection
+        <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
+        <QuizzSection
               Show={Show}
               quizz={quizz}
               SetQuizz={SetQuizz}
               round={round}
               pokemonSprites={pokemonSprites}
               result={result}
+
               />
           </div>
           <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
-            <QuestionSection
+          <QuestionSection
               result={result}
               anwser={anwser}
               SetAnwser={SetAnwser}
@@ -94,22 +96,21 @@ const App = () => {
             <div className="resultSection">
               {result && !endQuizz &&
                 <ResultSection
-                  Show={Show}
-                  resultDiv={resultDiv}
-                  SetResultDiv={SetResultDiv}
-                  correct={correct}
-                  pokemonName={pokemonName}
-                  pokemonType1={pokemonType1}
-                  pokemonType2={pokemonType2}
-                  pokemonAbilities={pokemonAbilities}
-                  SetResult={SetResult}
-                  SetReload={SetReload}
-                  reload={reload}
-                  SetAnwser={SetAnwser}
-                  SetRound={SetRound}
-                  round={round}
-                  SetEndQuizz={SetEndQuizz}
-                />
+                Show={Show}
+                resultDiv={resultDiv}
+                SetResultDiv={SetResultDiv}
+                correct={correct}
+                pokemonName={pokemonName}
+                pokemonType1={pokemonType1}
+                pokemonType2={pokemonType2}
+                SetResult={SetResult}
+                SetReload={SetReload}
+                reload={reload}
+                SetAnwser={SetAnwser}
+                SetRound={SetRound}
+                round={round}
+                SetEndQuizz={SetEndQuizz}
+              />
               }
             </div>
           </div>
@@ -124,6 +125,7 @@ const App = () => {
         </div>
       </div>
     </div>
+  </>
   );
 }
 export default App;

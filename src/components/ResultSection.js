@@ -2,22 +2,21 @@ import downArrow from "../assets/image/downArrow.png"
 import UpArrow from "../assets/image/UpArrow.png"
 
 const ResultSection = (
-  {Show, 
-  resultDiv, 
-  SetResultDiv,
-  correct,
-  pokemonName,
-  pokemonType1,
-  pokemonType2,
-  pokemonAbilities,
-  SetResult,
-  SetReload,
-  reload,
-  SetAnwser,
-  SetRound,
-  round,
-  SetEndQuizz,
-  }) =>{
+  { Show,
+    resultDiv,
+    SetResultDiv,
+    correct,
+    pokemonName,
+    pokemonType1,
+    pokemonType2,
+    SetResult,
+    SetReload,
+    reload,
+    SetAnwser,
+    SetRound,
+    round,
+    SetEndQuizz,
+  }) => {
 
   const typeImages = {
     water: require("../assets/image/water.png"),
@@ -53,26 +52,26 @@ const ResultSection = (
     }
   }
 
-  return(
+  return (
     <>
-    <div>
-      <button
-        onClick={(e) => { Show(resultDiv, SetResultDiv) }}
-        className='resultButton' style={{ color: correct ? 'green' : 'red' }}>
-        <img src={resultDiv ? UpArrow : downArrow} className="downArrow" />
-        It's {pokemonName}
-        <img src={resultDiv ? UpArrow : downArrow} className="downArrow" />
-      </button>
-      <div style={{ display: resultDiv ? 'flex' : 'none' }} className="resultDiv">
-        <img className="Img" src={typeImages[pokemonType1]} />
-        <img className="Img" src={typeImages[pokemonType2]} />
-        <p>{pokemonAbilities}</p>
+      <div>
+        <button
+          onClick={(e) => { Show(resultDiv, SetResultDiv) }}
+          className='resultButton'>
+          {/* <img src={resultDiv ? UpArrow : downArrow} className="downArrow" /> */}
+          <div style={{display: "flex",  flexDirection: 'row', textAlign :"center",alignItems:'center'}}><p style={{paddingRight: '20px'}}>It's</p>
+            <p style={{ color: correct ? 'green' : 'red',}}>{pokemonName}</p>
+          </div>
+          <div>
+            <img className="Img" src={typeImages[pokemonType1]} />
+            <img className="Img" src={typeImages[pokemonType2]} />
+          </div>
+        </button>
       </div>
-    </div>
-    <button onClick={Next} className="Button">NEXT</button>
-  </>
+      <button onClick={Next} className="Button">NEXT</button>
+    </>
   )
-  
+
 
 
 

@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <div className='upperBar'></div>
+    <header></header>
     <App />
     <footer></footer>
   </React.StrictMode>

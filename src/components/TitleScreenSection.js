@@ -1,4 +1,4 @@
-import titleScreen from "../assets/image/title.png"
+import titleImg from "../assets/image/title.png"
 
 export default function TitleScreenSection({
   Show,
@@ -22,8 +22,8 @@ export default function TitleScreenSection({
   }
   return (
     <>
-      <div>
-        <img src={titleScreen} className="titleScreen" />
+      <div  className="titleScreen">
+        <img src={titleImg} className="titleImg" />
       </div>
       <button onClick={Start} className='Button'>START</button></>
   )
