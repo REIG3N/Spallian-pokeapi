@@ -6,7 +6,7 @@ export default function QuestionSection({
   pokemonName,
   SetCorrect,
   SetScore,
-  score
+  score,
 }) {
   
   const Enter = () => {
@@ -21,6 +21,8 @@ export default function QuestionSection({
       SetCorrect(false)
     }
   }
+
+
 
   return (
     <>

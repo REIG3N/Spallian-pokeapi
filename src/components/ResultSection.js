@@ -1,5 +1,5 @@
-import downArrow from "../assets/image/downArrow.png"
-import UpArrow from "../assets/image/UpArrow.png"
+import { useState, } from "react";
+import EndQuizz from "./EndQuizz.js"
 
 const ResultSection = (
   { Show,
@@ -16,6 +16,15 @@ const ResultSection = (
     SetRound,
     round,
     SetEndQuizz,
+    pokeID,
+    endQuizz,
+    result,
+    score,
+    quizz,
+    SetQuizz,
+    pokemonsToGuess,
+    SetPokemonsToGuess,
+    // PokemonRegistering
   }) => {
 
   const typeImages = {
@@ -38,8 +47,32 @@ const ResultSection = (
     Roche: require("../assets/image/rock.png"),
     Vol: require("../assets/image/flying.png"),
   };
+  // const [pokemonsToGuess, SetPokemonsToGuess] = useState([]);
+
+  const PokemonRegistering = (PokemonToRegister) => {
+    const SelectedListCopy = [...pokemonsToGuess];
+    SelectedListCopy.push(PokemonToRegister);
+    SetPokemonsToGuess(SelectedListCopy);
+
+    // SetPokemonsToGuess(PokemonToRegister)
+    console.log(PokemonToRegister)
+    console.log(pokemonsToGuess)
+  }
+
 
   const Next = () => {
+    console.log(pokeID)
+
+    const PokemonToRegister = {
+      id: round,
+      name: pokemonName,
+      type1: pokemonType1,
+      type2: pokemonType2,
+    }
+    PokemonRegistering(PokemonToRegister)
+    SetPokemonsToGuess([...pokemonsToGuess, PokemonToRegister])
+    console.log(PokemonToRegister)
+    console.log(pokemonsToGuess)
     SetReload(!reload)
     SetResult(false)
     SetResultDiv(false)
@@ -69,6 +102,14 @@ const ResultSection = (
         </button>
       </div>
       <button onClick={Next} className="Button">NEXT</button>
+      {endQuizz && !result &&
+            <EndQuizz
+              score={score}
+              Show={Show}
+              quizz={quizz}
+              SetQuizz={SetQuizz}
+            />
+          }
     </>
   )
 
