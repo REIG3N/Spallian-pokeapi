@@ -10,6 +10,7 @@ export default function TitleScreenSection({
   SetResult,
   SetReload,
   reload,
+  SetPokemonsToGuess,
 }) {
 
   const Start = () => {
@@ -19,6 +20,8 @@ export default function TitleScreenSection({
     SetScore(0)
     SetResult(false)
     SetReload(!reload)
+    SetPokemonsToGuess([])
+
   }
   return (
     <>

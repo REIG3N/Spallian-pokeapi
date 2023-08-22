@@ -11,22 +11,44 @@ const App = () => {
   const [quizz, SetQuizz] = useState(false);
   const [reload, SetReload] = useState(true);
 
+  const [pokeID, SetPokeID] = useState("");
   const [pokemonName, SetPokemonName] = useState('');
   const [pokemonSprites, SetPokemonSprites] = useState('')
   const [pokemonType1, SetPokemonType1] = useState("");
   const [pokemonType2, SetPokemonType2] = useState("");
+  const [pokemonImgType1, SetPokemonImgType1] = useState("");
+  const [pokemonImgType2, SetPokemonImgType2] = useState("");
 
   const [anwser, SetAnwser] = useState('');
-  const [correct, SetCorrect] = useState(true);
-  const [result, SetResult] = useState(false);
-  const [resultDiv, SetResultDiv] = useState(false);
+  const [correct, SetCorrect] = useState(true);  
   const [round, SetRound] = useState(1);
   const [score, SetScore] = useState(0);
-  const [endQuizz, SetEndQuizz] = useState(false);
-  const [pokeID, SetPokeID] = useState("");
 
+  const [result, SetResult] = useState(false);
+  const [resultDiv, SetResultDiv] = useState(false);
+  const [endQuizz, SetEndQuizz] = useState(false);
   const [pokemonsToGuess, SetPokemonsToGuess] = useState([]);
-  
+
+  const typeImages = {
+    Eau: require("./assets/image/water.png"),
+    Normal: require("./assets/image/normal.png"),
+    Feu: require("./assets/image/fire.png"),
+    Électrik: require("./assets/image/electric.png"),
+    Plante: require("./assets/image/grass.png"),
+    Ténèbres: require("./assets/image/dark.png"),
+    Combat: require("./assets/image/fighting.png"),
+    Psy: require("./assets/image/psychic.png"),
+    Poison: require("./assets/image/poison.png"),
+    Acier: require("./assets/image/steel.png"),
+    Fée: require("./assets/image/fairy.png"),
+    Dragon: require("./assets/image/dragon.png"),
+    Glace: require("./assets/image/ice.png"),
+    Sol: require("./assets/image/ground.png"),
+    Insect: require("./assets/image/bug.png"),
+    Spectre: require("./assets/image/ghost.png"),
+    Roche: require("./assets/image/rock.png"),
+    Vol: require("./assets/image/flying.png"),
+  };
 
   const Show = (stateToChange, SetStateToChange) => {
     !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
@@ -34,7 +56,7 @@ const App = () => {
 
 
   useEffect(() => {
-    const randpoke = Math.floor(Math.random() * 1009) + 1;
+    const randpoke = Math.floor(Math.random() * 150) + 1;
     axios.get(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${randpoke}`)
       .then((response) => {
         console.log(response)
@@ -45,11 +67,18 @@ const App = () => {
 
         const type1 = response.data.types[0].name;
         console.log(type1)
-
         SetPokemonType1(type1)
         const type2 = response.data.types[1]?.name;
         SetPokemonType2(type2)
         console.log(type2)
+
+        const imgType1 = response.data.types[0].image;
+        console.log(imgType1)
+        SetPokemonImgType1(imgType1)
+        const imgType2 = response.data.types[1]?.image;
+        SetPokemonImgType2(imgType2)
+        console.log(imgType2)
+        
 
         const sprites = response.data.sprites.regular
         SetPokemonSprites(sprites)
@@ -73,6 +102,8 @@ const App = () => {
         SetResult={SetResult}
         SetReload={SetReload}
         reload={reload}
+        SetPokemonsToGuess={SetPokemonsToGuess}
+        
         />
       </div>
 
@@ -121,6 +152,7 @@ const App = () => {
                 score={score}
                 SetPokemonsToGuess={SetPokemonsToGuess}
                 pokemonsToGuess={pokemonsToGuess}
+                typeImages={typeImages}
 
               />
               }
@@ -134,6 +166,7 @@ const App = () => {
               SetQuizz={SetQuizz}
               SetPokemonsToGuess={SetPokemonsToGuess}
               pokemonsToGuess={pokemonsToGuess}
+              typeImages={typeImages}
 
             />
           }
