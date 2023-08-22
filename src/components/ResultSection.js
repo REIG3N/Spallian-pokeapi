@@ -18,11 +18,6 @@ const ResultSection = (
     round,
     SetEndQuizz,
     pokeID,
-    endQuizz,
-    result,
-    score,
-    quizz,
-    SetQuizz,
     pokemonsToGuess,
     SetPokemonsToGuess,
     typeImages

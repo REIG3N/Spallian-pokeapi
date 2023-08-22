@@ -79,7 +79,6 @@ const App = () => {
         SetPokemonImgType2(imgType2)
         console.log(imgType2)
         
-
         const sprites = response.data.sprites.regular
         SetPokemonSprites(sprites)
       }

@@ -195,3 +195,7 @@ cursor:pointer;
   background-color:lightgray;
   padding: 30px;
 }
+.pokemonToGuessLi{
+  background-color:lightgray;
+  padding: 10px;
+}

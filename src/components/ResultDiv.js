@@ -6,7 +6,8 @@ const ResultDiv = ({
   pokemonType1,
   pokemonType2,
   Show,
-  correct,  typeImages,
+  correct,  
+  typeImages,
 
 }) => {
 

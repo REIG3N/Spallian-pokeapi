@@ -7,8 +7,7 @@ export default function EndQuizz({
   quizz,
   SetQuizz,
   pokemonsToGuess,
-  pokemonType1,
-  pokemonType2,
+
 }) {
 
   const typeImages = {
@@ -40,10 +39,8 @@ export default function EndQuizz({
           {pokemonsToGuess && pokemonsToGuess.map(pokemon => {
             return (
               <>
-                <div
-                  key={pokemon.id}
-                  className='endQuizz'>
-                    <a>{pokemon.name}</a>
+                <div key={pokemon.id} className="pokemonToGuessLi">
+                    <a >{pokemon.name}</a>
                   </div>
                 </>
             );
