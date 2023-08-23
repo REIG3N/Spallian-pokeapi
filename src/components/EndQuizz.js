@@ -49,21 +49,19 @@ export default function EndQuizz({
   return (
     <>
       <div className="endQuizz">
-      <button OnClick={() => { OpenPokedexPage() }}  className="">pokemon.name</button>
-              <button OnClick={() => {SetPokedexPage(true)}}  className="">Open</button>
         <h3>You got {score} out of 5 correct answers !</h3>
         <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button'>GO TO MENU</button>
         <h4>Listes des Pokémons a deviné:</h4>
 
         {pokemonsToGuess && pokemonsToGuess.map(pokemon => {
           return (
-            <>
-              <button OnClick={() => { OpenPokedexPage() }} key={pokemon.id} className="">{pokemon.name}</button>
-              <button OnClick={() => {SetPokedexPage(true)}}  className="">Open</button>
-              {/* <button OnClick={() => {SetPokedexPage(true)}  className="">Open</button> */}
+            <div className="pokemonToGuessLi">
+              <button OnClick={() => { OpenPokedexPage() }} key={pokemon.id} className="pokemonToGuessButton">{pokemon.name}</button>
+              {/* <button OnClick={() => {SetPokedexPage(true)}}  className="">Open</button>
+              <button OnClick={() => {SetPokedexPage(true)}  className="">Open</button> */}
 
 
-            </>
+            </div>
           );
         })}
       </div>
