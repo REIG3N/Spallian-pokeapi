@@ -199,3 +199,9 @@ cursor:pointer;
   background-color:lightgray;
   padding: 10px;
 }
+
+.pokemonToGuessButton{
+  background-color:lightgray;
+  border: none;
+  cursor: pointer;  
+}

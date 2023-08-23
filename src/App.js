@@ -20,7 +20,7 @@ const App = () => {
   const [pokemonImgType2, SetPokemonImgType2] = useState("");
 
   const [anwser, SetAnwser] = useState('');
-  const [correct, SetCorrect] = useState(true);  
+  const [correct, SetCorrect] = useState(true);
   const [round, SetRound] = useState(1);
   const [score, SetScore] = useState(0);
 
@@ -28,6 +28,7 @@ const App = () => {
   const [resultDiv, SetResultDiv] = useState(false);
   const [endQuizz, SetEndQuizz] = useState(false);
   const [pokemonsToGuess, SetPokemonsToGuess] = useState([]);
+
 
   const typeImages = {
     Eau: require("./assets/image/water.png"),
@@ -78,7 +79,7 @@ const App = () => {
         const imgType2 = response.data.types[1]?.image;
         SetPokemonImgType2(imgType2)
         console.log(imgType2)
-        
+
         const sprites = response.data.sprites.regular
         SetPokemonSprites(sprites)
       }
@@ -88,29 +89,29 @@ const App = () => {
 
   return (<>
 
-  <div className="appContainer" >
+    <div className="appContainer" >
 
       <div className="menuScreen" style={{ display: quizz ? 'none' : 'block' }}>
-      <TitleScreenSection 
-        Show={Show}
-        quizz={quizz}
-        SetQuizz={SetQuizz}
-        SetRound={SetRound}
-        SetEndQuizz={SetEndQuizz}
-        SetScore={SetScore}
-        SetResult={SetResult}
-        SetReload={SetReload}
-        reload={reload}
-        SetPokemonsToGuess={SetPokemonsToGuess}
-        
+        <TitleScreenSection
+          Show={Show}
+          quizz={quizz}
+          SetQuizz={SetQuizz}
+          SetRound={SetRound}
+          SetEndQuizz={SetEndQuizz}
+          SetScore={SetScore}
+          SetResult={SetResult}
+          SetReload={SetReload}
+          reload={reload}
+          SetPokemonsToGuess={SetPokemonsToGuess}
+
         />
       </div>
 
 
       <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <div className="quizzContainer"  >
-        <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
-        <QuizzSection
+          <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
+            <QuizzSection
               Show={Show}
               quizz={quizz}
               SetQuizz={SetQuizz}
@@ -118,10 +119,10 @@ const App = () => {
               pokemonSprites={pokemonSprites}
               result={result}
 
-              />
+            />
           </div>
           <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
-          <QuestionSection
+            <QuestionSection
               result={result}
               anwser={anwser}
               SetAnwser={SetAnwser}
@@ -134,26 +135,26 @@ const App = () => {
             <div className="resultSection">
               {result && !endQuizz &&
                 <ResultSection
-                Show={Show}
-                resultDiv={resultDiv}
-                SetResultDiv={SetResultDiv}
-                correct={correct}
-                pokemonName={pokemonName}
-                pokemonType1={pokemonType1}
-                pokemonType2={pokemonType2}
-                SetResult={SetResult}
-                SetReload={SetReload}
-                reload={reload}
-                SetAnwser={SetAnwser}
-                SetRound={SetRound}
-                round={round}
-                SetEndQuizz={SetEndQuizz}
-                score={score}
-                SetPokemonsToGuess={SetPokemonsToGuess}
-                pokemonsToGuess={pokemonsToGuess}
-                typeImages={typeImages}
+                  Show={Show}
+                  resultDiv={resultDiv}
+                  SetResultDiv={SetResultDiv}
+                  correct={correct}
+                  pokemonName={pokemonName}
+                  pokemonType1={pokemonType1}
+                  pokemonType2={pokemonType2}
+                  SetResult={SetResult}
+                  SetReload={SetReload}
+                  reload={reload}
+                  SetAnwser={SetAnwser}
+                  SetRound={SetRound}
+                  round={round}
+                  SetEndQuizz={SetEndQuizz}
+                  score={score}
+                  SetPokemonsToGuess={SetPokemonsToGuess}
+                  pokemonsToGuess={pokemonsToGuess}
+                  typeImages={typeImages}
 
-              />
+                />
               }
             </div>
           </div>
@@ -165,7 +166,10 @@ const App = () => {
               SetQuizz={SetQuizz}
               SetPokemonsToGuess={SetPokemonsToGuess}
               pokemonsToGuess={pokemonsToGuess}
-              typeImages={typeImages}
+              round={round}
+              SetReload={SetReload}
+              endQuizz={endQuizz}
+
 
             />
           }

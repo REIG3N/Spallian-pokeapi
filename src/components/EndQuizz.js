@@ -1,4 +1,4 @@
-import { useState, } from "react";
+import { useState, useEffect } from "react";
 import ResultDiv from "./ResultDiv.js"
 
 export default function EndQuizz({
@@ -7,9 +7,26 @@ export default function EndQuizz({
   quizz,
   SetQuizz,
   pokemonsToGuess,
-
+  pokedexPage,
+  SetPokedexPage,
+  endQuizz,
+  OpenPokedexPage,
 }) {
 
+  const [pokedexPage, SetPokedexPage] = useState(false);
+
+  const OpenPokedexPage = () => {
+    SetPokedexPage(true)
+    console.log("-------------OPEN-------------")
+    console.log(pokedexPage)
+  }
+  useEffect(() => {
+      console.log("-------------OPEN-------------");
+      console.log(pokedexPage)
+    
+
+  }, [pokedexPage]);
+  
   const typeImages = {
     Eau: require("../assets/image/water.png"),
     Normal: require("../assets/image/normal.png"),
@@ -30,24 +47,35 @@ export default function EndQuizz({
     Roche: require("../assets/image/rock.png"),
     Vol: require("../assets/image/flying.png"),
   };
+
+
   return (
     <>
       <div className="endQuizz">
+      <button OnClick={() => { OpenPokedexPage() }}  className="">pokemon.name</button>
+              <button OnClick={() => {SetPokedexPage(true)}}  className="">Open</button>
         <h3>You got {score} out of 5 correct answers !</h3>
         <button onClick={(e) => { Show(quizz, SetQuizz) }} className='Button'>GO TO MENU</button>
         <h4>Listes des Pokémons a deviné:</h4>
-          {pokemonsToGuess && pokemonsToGuess.map(pokemon => {
-            return (
-              <>
-                <div key={pokemon.id} className="pokemonToGuessLi">
-                    <a >{pokemon.name}</a>
-                  </div>
-                </>
-            );
-          })}
+
+        {pokemonsToGuess && pokemonsToGuess.map(pokemon => {
+          return (
+            <>
+              <button OnClick={() => { OpenPokedexPage() }} key={pokemon.id} className="">{pokemon.name}</button>
+              <button OnClick={() => {SetPokedexPage(true)}}  className="">Open</button>
+              {/* <button OnClick={() => {SetPokedexPage(true)}  className="">Open</button> */}
 
 
+            </>
+          );
+        })}
       </div>
+      {pokedexPage &&
+        <div>
+          <button className="">Close</button>
+          <div className="">Page pokedex du pokemon</div>
+        </div>
+      }
     </>
   )
 }

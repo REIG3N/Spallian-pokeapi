@@ -42,9 +42,8 @@ const ResultSection = (
     }
     PokemonRegistering(PokemonToRegister)
     SetPokemonsToGuess([...pokemonsToGuess, PokemonToRegister])
-    console.log(PokemonToRegister)
+    console.table(PokemonToRegister)
     console.log(pokemonsToGuess)
-    SetReload(!reload)
     SetResult(false)
     SetResultDiv(false)
     SetAnwser('')
@@ -53,6 +52,9 @@ const ResultSection = (
       console.log("----END OF THE QUIZZ----")
       SetRound(1)
       SetEndQuizz(true)
+    }
+    else{
+      SetReload(!reload)
 
     }
   }
