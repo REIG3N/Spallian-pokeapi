@@ -7,10 +7,7 @@ export default function EndQuizz({
   quizz,
   SetQuizz,
   pokemonsToGuess,
-  pokedexPage,
-  SetPokedexPage,
   endQuizz,
-  OpenPokedexPage,
 }) {
 
   const [pokedexPage, SetPokedexPage] = useState(false);
@@ -26,7 +23,7 @@ export default function EndQuizz({
     
 
   }, [pokedexPage]);
-  
+
   const typeImages = {
     Eau: require("../assets/image/water.png"),
     Normal: require("../assets/image/normal.png"),
