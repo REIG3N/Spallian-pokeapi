@@ -57,26 +57,7 @@ const App = () => {
     RandGen9: Math.floor(Math.random() * (1010 - 906 + 1)) + 906 + 1,
   };
 
-  const typeImages = {
-    Eau: require("./assets/image/water.png"),
-    Normal: require("./assets/image/normal.png"),
-    Feu: require("./assets/image/fire.png"),
-    Électrik: require("./assets/image/electric.png"),
-    Plante: require("./assets/image/grass.png"),
-    Ténèbres: require("./assets/image/dark.png"),
-    Combat: require("./assets/image/fighting.png"),
-    Psy: require("./assets/image/psychic.png"),
-    Poison: require("./assets/image/poison.png"),
-    Acier: require("./assets/image/steel.png"),
-    Fée: require("./assets/image/fairy.png"),
-    Dragon: require("./assets/image/dragon.png"),
-    Glace: require("./assets/image/ice.png"),
-    Sol: require("./assets/image/ground.png"),
-    Insect: require("./assets/image/bug.png"),
-    Spectre: require("./assets/image/ghost.png"),
-    Roche: require("./assets/image/rock.png"),
-    Vol: require("./assets/image/flying.png"),
-  };
+
   function Show (stateToChange, SetStateToChange){
     !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
   };
@@ -175,7 +156,6 @@ useEffect(() => {
                   score={score}
                   SetPokemonsToGuess={SetPokemonsToGuess}
                   pokemonsToGuess={pokemonsToGuess}
-                  typeImages={typeImages}
 
                 />
               }
