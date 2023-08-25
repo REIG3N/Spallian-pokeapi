@@ -11,8 +11,8 @@ const ResultSection = (
     pokemonType1,
     pokemonType2,
     SetResult,
-    SetReload,
-    reload,
+    CallAPI,
+    SetCallAPI,
     SetAnwser,
     SetRound,
     round,
@@ -47,7 +47,7 @@ const ResultSection = (
       SetEndQuizz(true)
     }
     else{
-      SetReload(!reload)
+      SetCallAPI(!CallAPI)
     }
   }
 

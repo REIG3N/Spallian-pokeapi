@@ -10,8 +10,8 @@ export default function ({
   SetEndQuizz,
   SetScore,
   SetResult,
-  SetReload,
-  reload,
+  CallAPI,
+  SetCallAPI,
   SetPokemonsToGuess,
   }) {
 
@@ -21,14 +21,15 @@ export default function ({
 
 
 
-  const Start = (x) => {
+  const Start = () => {
     // Show(quizz, SetQuizz)
     SetQuizz(true)
     SetRound(1)
     SetEndQuizz(false)
     SetScore(0)
     SetResult(false)
-    SetReload(!reload)
+    // Show(CallAPI, SetCallAPI)
+    SetCallAPI(!CallAPI)
     SetPokemonsToGuess([])
   }
 
@@ -40,7 +41,7 @@ export default function ({
     <>
       {/* <div style={{ display: select ? 'block' : 'none' }}> */}
 
-      <button onClick={Start()} className='Button'>GEN 1</button>
+      <button onClick={Start} className='Button'>GEN 1</button>
       {/* <button onClick={Start2} className='Button'>GEN 2</button> */}
       {/* <button onClick={Start} className='Button'>GEN 3</button>
       <button onClick={Start} className='Button'>GEN 4</button>

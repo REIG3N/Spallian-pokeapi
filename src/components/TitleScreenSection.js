@@ -12,10 +12,10 @@ export default function TitleScreenSection({
   SetEndQuizz,
   SetScore,
   SetResult,
-  SetReload,
-  reload,
+  CallAPI,
+  SetCallAPI,
   SetPokemonsToGuess,
-  
+
 }) {
 
   const [select, SetSelect] = useState(false);
@@ -27,12 +27,13 @@ export default function TitleScreenSection({
     console.log("-----------select-------------")
     console.log(select)
 
-    // SetRound(1)
-    // SetEndQuizz(false)
-    // SetScore(0)
-    // SetResult(false)
-    // SetReload(!reload)
-    // SetPokemonsToGuess([])
+    SetRound(1)
+    SetEndQuizz(false)
+    SetScore(0)
+    SetResult(false)
+    SetCallAPI(!CallAPI)
+    // Show(CallAPI, SetCallAPI)
+    SetPokemonsToGuess([])
   }
 
 
@@ -54,8 +55,8 @@ export default function TitleScreenSection({
           SetEndQuizz={SetEndQuizz}
           SetScore={SetScore}
           SetResult={SetResult}
-          SetReload={SetReload}
-          reload={reload}
+          CallAPI={CallAPI}
+          SetCallAPI={SetCallAPI}
           SetPokemonsToGuess={SetPokemonsToGuess}
         />
       </div>

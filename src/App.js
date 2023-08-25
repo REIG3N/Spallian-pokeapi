@@ -10,7 +10,7 @@ import MenuScreenSection from "./components/MenuScreenSection.js"
 
 const App = () => {
   const [quizz, SetQuizz] = useState(false);
-  const [reload, SetReload] = useState(true);
+  const [CallAPI, SetCallAPI] = useState(true);
 
   const [pokeID, SetPokeID] = useState("");
   const [pokemonName, SetPokemonName] = useState('');
@@ -34,7 +34,6 @@ const App = () => {
   ]);
   const RandAllGen = Math.floor(Math.random() * 1010) + 1;
   //   const RandGen1 = Math.floor(Math.random() * 150) + 1;
-  const RandGen1 = Math.floor(Math.random() * 150) + 1;
 
   const RandGen2 = Math.floor(Math.random() * 100) + 151 + 1;
   const RandGen3 = Math.floor(Math.random() * 134) + 252 + 1;
@@ -78,41 +77,38 @@ const App = () => {
     Roche: require("./assets/image/rock.png"),
     Vol: require("./assets/image/flying.png"),
   };
-  const Show = (stateToChange, SetStateToChange) => {
+  function Show (stateToChange, SetStateToChange){
     !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
   };
 
 
 
-  const CallAPI = () => {
-    // axios.get(`https://api-pokemon-fr.vercel.app/api/v1//`)
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${RandGen1}`)
-      .then((response) => {
-        console.log(response)
-        SetPokeID(RandGen1)
-        console.log(pokeID)
-        // const name = response.data.name.fr;
-        // console.log(name)
-        // SetPokemonName(name)
-        // const type1 = response.data.types[0].name
-        // console.log(type1)
-        // SetPokemonType1(type1)
-        // const type2 = response.data.types[1]?.name;
-        // SetPokemonType2(type2)
-        // console.log(type2)
-        // const imgType1 = response.data.types[0].image;
-        // console.log(imgType1)
-        // SetPokemonImgType1(imgType1)
-        // const imgType2 = response.data.types[1]?.image;
-        // SetPokemonImgType2(imgType2)
-        // console.log(imgType2)
-        // const sprites = response.data.sprites.regular
-        // SetPokemonSprites(sprites)
-      }).catch(error => { console.error('Erreur Axios :', error); })
-  }
-  // useEffect(() => {
-  // // CallAPI()
-  // }, [reload]);
+useEffect(() => {
+  const RandGen1 = Math.floor(Math.random() * 150) + 1;
+  // axios.get(`https://api-pokemon-fr.vercel.app/api/v1//`)
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${RandGen1}`)
+    .then((response) => {
+      console.log(response)
+      SetPokeID(RandGen1)
+      console.log(pokeID)
+      const name = response.data.name;
+      console.log(name)
+      SetPokemonName(name)
+      const type1 = response.data.types[0].type.name
+      console.log(type1)
+      SetPokemonType1(type1)
+      const type2 = response.data.types[1]?.type.name
+      SetPokemonType2(type2)
+      console.log(type2)
+
+      const sprites = response.data.sprites.front_default
+      SetPokemonSprites(sprites)
+      console.log(sprites)
+      console.log(CallAPI)
+      console.log(SetCallAPI)
+    }).catch(error => { console.error('Erreur Axios :', error); })
+},[CallAPI])
+
   return (<>
 
     <div className="appContainer" >
@@ -126,8 +122,8 @@ const App = () => {
           SetEndQuizz={SetEndQuizz}
           SetScore={SetScore}
           SetResult={SetResult}
-          SetReload={SetReload}
-          reload={reload}
+          CallAPI={CallAPI}
+          SetCallAPI={SetCallAPI}
           SetPokemonsToGuess={SetPokemonsToGuess}
         />
 
@@ -170,8 +166,8 @@ const App = () => {
                   pokemonType1={pokemonType1}
                   pokemonType2={pokemonType2}
                   SetResult={SetResult}
-                  SetReload={SetReload}
-                  reload={reload}
+                  CallAPI={CallAPI}
+                  SetCallAPI={SetCallAPI}
                   SetAnwser={SetAnwser}
                   SetRound={SetRound}
                   round={round}
@@ -194,10 +190,7 @@ const App = () => {
               SetPokemonsToGuess={SetPokemonsToGuess}
               pokemonsToGuess={pokemonsToGuess}
               round={round}
-              SetReload={SetReload}
               endQuizz={endQuizz}
-
-
             />
           }
         </div>
