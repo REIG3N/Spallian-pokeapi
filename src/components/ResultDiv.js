@@ -22,7 +22,7 @@ const ResultDiv = ({
         </div>
         <div>
           <img className="Img" src={typeImages[pokemonType1]} />
-          <img className="Img" src={typeImages[pokemonType2]} />
+          <img className="Img" style={{ display: pokemonType2 ? 'block' : 'none' }} src={typeImages[pokemonType2]} />
         </div>
       </div>
     </>

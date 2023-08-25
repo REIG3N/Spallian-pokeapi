@@ -25,12 +25,6 @@ const ResultSection = (
 
 
 
-  const PokemonRegistering = (PokemonToRegister) => {
-    const SelectedListCopy = [...pokemonsToGuess];
-    SelectedListCopy.push(PokemonToRegister);
-    SetPokemonsToGuess(SelectedListCopy);
-  }
-
 
   const Next = () => {
     console.log(pokeID)
@@ -40,7 +34,6 @@ const ResultSection = (
       type1: pokemonType1,
       type2: pokemonType2,
     }
-    PokemonRegistering(PokemonToRegister)
     SetPokemonsToGuess([...pokemonsToGuess, PokemonToRegister])
     console.table(PokemonToRegister)
     console.log(pokemonsToGuess)
@@ -55,7 +48,6 @@ const ResultSection = (
     }
     else{
       SetReload(!reload)
-
     }
   }
 
