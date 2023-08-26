@@ -14,7 +14,7 @@ export default function QuizzSection({
       setIsLoaded(true);
     };
   
-
+    
   return (
     <>
       <div className="quizzHeader">
