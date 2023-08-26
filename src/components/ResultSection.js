@@ -20,13 +20,14 @@ const ResultSection = (
     pokeID,
     pokemonsToGuess,
     SetPokemonsToGuess,
-    typeImages
+    NewPokemon,
+    currentGenPoke,
   }) => {
 
 
 
 
-  const Next = () => {
+  const Next = (Gen) => {
     console.log(pokeID)
     const PokemonToRegister = {
       id: round,
@@ -36,7 +37,6 @@ const ResultSection = (
     }
     SetPokemonsToGuess([...pokemonsToGuess, PokemonToRegister])
     console.table(PokemonToRegister)
-    console.log(pokemonsToGuess)
     SetResult(false)
     SetResultDiv(false)
     SetAnwser('')
@@ -46,7 +46,9 @@ const ResultSection = (
       SetRound(1)
       SetEndQuizz(true)
     }
-    else{
+    else {
+      NewPokemon(Gen)
+      console.log(Gen)
       SetCallAPI(!CallAPI)
     }
   }
@@ -54,18 +56,26 @@ const ResultSection = (
   return (
     <>
       <ResultDiv
-      resultDiv={resultDiv}
-      SetResultDiv={SetResultDiv}
-      typeImages={typeImages}
-      pokemonName={pokemonName}
-      pokemonType1={pokemonType1}
-      pokemonType2={pokemonType2}
-      Show={Show}
-      correct={correct}
-
+        resultDiv={resultDiv}
+        SetResultDiv={SetResultDiv}
+        pokemonName={pokemonName}
+        pokemonType1={pokemonType1}
+        pokemonType2={pokemonType2}
+        Show={Show}
+        correct={correct}
       />
-      <button onClick={Next} className="Button">NEXT</button>
-
+      <div style={{ display: "flex", justifyContent: "center"}}>
+        <button onClick={() => Next("Gen1")} className="Button" style={{ display: currentGenPoke === "Gen1" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen2")} className="Button" style={{ display: currentGenPoke === "Gen2" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen3")} className="Button" style={{ display: currentGenPoke === "Gen3" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen4")} className="Button" style={{ display: currentGenPoke === "Gen4" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen5")} className="Button" style={{ display: currentGenPoke === "Gen5" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen6")} className="Button" style={{ display: currentGenPoke === "Gen6" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen7")} className="Button" style={{ display: currentGenPoke === "Gen7" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen8")} className="Button" style={{ display: currentGenPoke === "Gen8" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("Gen9")} className="Button" style={{ display: currentGenPoke === "Gen9" ? 'block' : 'none' }}>NEXT</button>
+        <button onClick={() => Next("AllGen")} className="Button" style={{ display: currentGenPoke === "AllGen" ? 'block' : 'none' }}>NEXT</button>
+      </div>
     </>
   )
 }

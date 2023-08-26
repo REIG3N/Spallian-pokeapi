@@ -29,12 +29,17 @@ const App = () => {
   const [resultDiv, SetResultDiv] = useState(false);
   const [endQuizz, SetEndQuizz] = useState(false);
   const [pokemonsToGuess, SetPokemonsToGuess] = useState([]);
-  const [GenPoke, SetGenPoke] = useState([
+  const [GenPoke, SetGenPoke] = useState(0);
 
-  ]);
+  const [currentGenPoke, SetCurrentGenPoke] = useState("");
+
+
+  function Show (stateToChange, SetStateToChange){
+    !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
+  };
+
   const RandAllGen = Math.floor(Math.random() * 1010) + 1;
-  //   const RandGen1 = Math.floor(Math.random() * 150) + 1;
-
+  const RandGen1 = Math.floor(Math.random() * 150) + 1;
   const RandGen2 = Math.floor(Math.random() * 100) + 151 + 1;
   const RandGen3 = Math.floor(Math.random() * 134) + 252 + 1;
   const RandGen4 = Math.floor(Math.random() * 106) + 387 + 1;
@@ -44,60 +49,81 @@ const App = () => {
   const RandGen8 = Math.floor(Math.random() * 95) + 810 + 1;
   const RandGen9 = Math.floor(Math.random() * 103) + 906 + 1;
 
-  const GenList = {
-    RandAllGen: Math.floor(Math.random() * 1010) + 1,
-    RandGen1: Math.floor(Math.random() * 150) + 1,
-    RandGen2: Math.floor(Math.random() * (251 - 151 + 1)) + 151 + 1,
-    RandGen3: Math.floor(Math.random() * (386 - 252 + 1)) + 252 + 1,
-    RandGen4: Math.floor(Math.random() * (493 - 387 + 1)) + 387 + 1,
-    RandGen5: Math.floor(Math.random() * (649 - 494 + 1)) + 494 + 1,
-    RandGen6: Math.floor(Math.random() * (721 - 650 + 1)) + 650 + 1,
-    RandGen7: Math.floor(Math.random() * (809 - 722 + 1)) + 722 + 1,
-    RandGen8: Math.floor(Math.random() * (905 - 810 + 1)) + 810 + 1,
-    RandGen9: Math.floor(Math.random() * (1010 - 906 + 1)) + 906 + 1,
-  };
 
-
-  function Show (stateToChange, SetStateToChange){
-    !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
-  };
-
-
+  const NewPokemon = (Gen) => {
+    if(Gen === "Gen1"){
+      SetGenPoke(RandGen1)
+      SetCurrentGenPoke("Gen1")
+    }
+    else if(Gen === "Gen2"){
+      SetGenPoke(RandGen2)
+      SetCurrentGenPoke("Gen2")
+  
+    }
+    else if(Gen === "Gen3"){
+      SetGenPoke(RandGen3)
+      SetCurrentGenPoke("Gen3")
+    }
+    else if(Gen === "Gen4"){
+      SetGenPoke(RandGen4)
+      SetCurrentGenPoke("Gen4")
+  
+    }
+    else if(Gen === "Gen5"){
+      SetGenPoke(RandGen5)
+      SetCurrentGenPoke("Gen5")
+  
+    }
+    else if(Gen === "Gen6"){
+      SetGenPoke(RandGen6)
+      SetCurrentGenPoke("Gen6")
+  
+    }
+    else if(Gen === "Gen7"){
+      SetGenPoke(RandGen7)
+      SetCurrentGenPoke("Gen7")
+  
+    }
+    else if(Gen === "Gen8"){
+      SetGenPoke(RandGen8)
+      SetCurrentGenPoke("Gen8")
+    }
+    else if(Gen === "Gen9"){
+      SetGenPoke(RandGen9)
+      SetCurrentGenPoke("Gen9")
+    }
+    else if(Gen === "AllGen"){
+      SetGenPoke(RandAllGen)
+      SetCurrentGenPoke("AllGen")
+    }
+  }
 
 useEffect(() => {
-  const RandGen1 = Math.floor(Math.random() * 150) + 1;
-  // axios.get(`https://api-pokemon-fr.vercel.app/api/v1//`)
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${RandGen1}`)
+
+  // const RandGen1 = Math.floor(Math.random() * 150) + 1;
+  // axios.get(`https://api-pokemon-fr.vercel.app/api/v1/{GenPoke}`)
+  axios.get(`https://pokeapi.co/api/v2/pokemon/${GenPoke}`)
     .then((response) => {
       console.log(response)
-      SetPokeID(RandGen1)
-      console.log(pokeID)
+      SetPokeID(GenPoke)
       const name = response.data.name;
       console.log(name)
       SetPokemonName(name)
       const type1 = response.data.types[0].type.name
-      console.log(type1)
       SetPokemonType1(type1)
       const type2 = response.data.types[1]?.type.name
       SetPokemonType2(type2)
-      console.log(type2)
 
       const sprites = response.data.sprites.front_default
       SetPokemonSprites(sprites)
-      console.log(sprites)
-      console.log(CallAPI)
-      console.log(SetCallAPI)
     }).catch(error => { console.error('Erreur Axios :', error); })
 },[CallAPI])
 
   return (<>
-
     <div className="appContainer" >
 
       <div className="menuScreen" style={{ display: quizz ? 'none' : 'block' }}>
         <TitleScreenSection
-          Show={Show}
-          quizz={quizz}
           SetQuizz={SetQuizz}
           SetRound={SetRound}
           SetEndQuizz={SetEndQuizz}
@@ -106,9 +132,8 @@ useEffect(() => {
           CallAPI={CallAPI}
           SetCallAPI={SetCallAPI}
           SetPokemonsToGuess={SetPokemonsToGuess}
+          NewPokemon={NewPokemon}
         />
-
-
       </div>
 
 
@@ -122,7 +147,6 @@ useEffect(() => {
               round={round}
               pokemonSprites={pokemonSprites}
               result={result}
-
             />
           </div>
           <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
@@ -156,7 +180,8 @@ useEffect(() => {
                   score={score}
                   SetPokemonsToGuess={SetPokemonsToGuess}
                   pokemonsToGuess={pokemonsToGuess}
-
+                  NewPokemon={NewPokemon}
+                  currentGenPoke={currentGenPoke}
                 />
               }
             </div>

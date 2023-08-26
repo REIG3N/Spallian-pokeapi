@@ -3,18 +3,17 @@ import MenuScreenSection from "./MenuScreenSection.js"
 import { useState, useEffect } from "react";
 
 export default function TitleScreenSection({
-  Show,
-  quizz,
   SetQuizz,
-  // select,
-  // SetSelect,
   SetRound,
   SetEndQuizz,
   SetScore,
   SetResult,
   CallAPI,
   SetCallAPI,
+
   SetPokemonsToGuess,
+
+  NewPokemon,
 
 }) {
 
@@ -22,7 +21,6 @@ export default function TitleScreenSection({
 
 
   const Select = () => {
-    // Show(select, SetSelect)
     SetSelect(true)
     console.log("-----------select-------------")
     console.log(select)
@@ -32,7 +30,6 @@ export default function TitleScreenSection({
     SetScore(0)
     SetResult(false)
     SetCallAPI(!CallAPI)
-    // Show(CallAPI, SetCallAPI)
     SetPokemonsToGuess([])
   }
 
@@ -48,8 +45,6 @@ export default function TitleScreenSection({
       </div>
       <div style={{ display: select ? 'block' : 'none' }}>
         <MenuScreenSection
-          Show={Show}
-          quizz={quizz}
           SetQuizz={SetQuizz}
           SetRound={SetRound}
           SetEndQuizz={SetEndQuizz}
@@ -58,6 +53,7 @@ export default function TitleScreenSection({
           CallAPI={CallAPI}
           SetCallAPI={SetCallAPI}
           SetPokemonsToGuess={SetPokemonsToGuess}
+          NewPokemon={NewPokemon}
         />
       </div>
     </>
