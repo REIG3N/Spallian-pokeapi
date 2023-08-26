@@ -25,8 +25,9 @@ export default function ({
   }
 
   return (
-    <>
-      <div>
+    <div className="SelectScreen">
+      <div className="SelectScreenTitle">Choose the generation of the quizz</div>
+      <div className=" SelectScreenButtons">
         <button onClick={() => Start("Gen1")} className='Button'>GEN 1</button>
         <button onClick={() => Start("Gen2")} className='Button'>GEN 2</button>
         <button onClick={() => Start("Gen3")} className='Button'>GEN 3</button>
@@ -39,6 +40,6 @@ export default function ({
         <button onClick={() => Start("AllGen")} className='Button'>ALL</button>
       </div>
 
-    </>
+    </div>
   )
 }

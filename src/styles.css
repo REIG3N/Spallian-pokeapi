@@ -42,13 +42,52 @@ footer{
 
 }
 
+.appContainer{
+  padding-top: 50px;
+
+}
 
 .menuScreen{
   display: flex;
-  flex-direction:column;
   justify-content:center;
   text-align: center;
   align-items: center;
+  gap: 15px;
+
+}
+
+.SelectScreen{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+}
+
+.SelectScreenTitle{
+  margin: 20px;
+  padding: 10px ;
+  background-color: white;
+  border: none;
+
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+
+  width: 293px;
+  height: 70px;
+  font-size: 20px;
+}
+
+
+.SelectScreenButtons{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  gap: 15px;
+
 }
 
 
