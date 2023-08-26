@@ -25,12 +25,12 @@ export default function QuestionSection({
 
 
   return (
-    <>
-      <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
-        <h3 className="text">Who's that pokémon ?</h3>
+    <div className="questionSection"  style={{ display: result ? 'none' : 'flex' }}>
+      <div>
+        <h3 >Who's that pokémon ?</h3>
         <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
-        <button onClick={Enter} className="Button">ENTER</button>
       </div>
-    </>
+      <button onClick={Enter} className="Button">ENTER</button>
+    </div>
   )
 }

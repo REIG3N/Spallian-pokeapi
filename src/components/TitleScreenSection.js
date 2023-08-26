@@ -10,14 +10,13 @@ export default function TitleScreenSection({
   SetResult,
   CallAPI,
   SetCallAPI,
-
   SetPokemonsToGuess,
-
+  select,
+  SetSelect,
   NewPokemon,
 
 }) {
 
-  const [select, SetSelect] = useState(false);
 
 
   const Select = () => {

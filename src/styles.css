@@ -43,7 +43,7 @@ footer{
 }
 
 .appContainer{
-  padding-top: 50px;
+  padding-top: 30px;
 
 }
 
@@ -67,7 +67,7 @@ footer{
 .SelectScreenTitle{
   margin: 20px;
   padding: 10px ;
-  background-color: white;
+  background-color: lightgray;
   border: none;
 
   display: flex;
@@ -109,16 +109,20 @@ footer{
 }
 
 .quizzHeader{
-  
   display:flex;
+  flex-direction:row;
   justify-content:space-between;
   align-items: center;
   text-align: center;
 
-  @media screen and (max-width:1100px){
-    color: white;
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  height: 20px;
 
-  }
+  background-color: lightgray;
+  border-radius: 15px;
+  border: 5px solid  rgb(48,48,48);
 }
 .returnButton{
   border:none;
@@ -127,9 +131,9 @@ footer{
   justify-content:center;
   text-align: center;
   align-items: center;
-  @media screen and (max-width:1100px){
-    color: white;
-  }
+  width:40px;
+  height:10px;
+  padding-top:5px;
 }
 
 .Img{
@@ -141,9 +145,13 @@ footer{
 }
 
 .imageDiv{
-  background-color:white;
+  display:flex;
+  justify-content:center;
+  text-align: center;
+  align-items: center;  background-color:white;
   min-width: 300px;
   border: 5px solid  rgb(48,48,48);
+  pointer-events: none;
 }
 
 .pokemonSprite{
@@ -167,24 +175,28 @@ footer{
   justify-content:center;
   text-align: center;
   align-items: center;
+
+  background-color: lightgray;
+  border-radius: 15px;
+  border: 5px solid  rgb(48,48,48);
+
+  width: 300px;
+  margin: 10px;
+  padding-bottom: 20px;
+
   
 }
 
-.text{
-  @media screen and (max-width:720px){
-    color: white;
-  }
-}
+
 
 
 .anwserInput{
-  width: 280px;
+  width: 260px;
   border-top: 3px  solid black;
   border-bottom: 3px solid black;
   border-left: 5px  solid black;
   border-right: 5px solid black;
-  margin-top: 10px;
-
+  margin-bottom:20px;
 }
 
 .resultSection{
@@ -198,12 +210,13 @@ justify-content:space-around;
 align-items: center;
 
 background-color: lightgray;
+border-radius: 15px;
+border: 5px solid  rgb(48,48,48); 
 
 width: 293px;
 height: 70px;
 font-size: 20px;
 
-border: none;
 cursor:pointer;
 }
 
@@ -232,15 +245,39 @@ cursor:pointer;
 
 .endQuizz{
   background-color:lightgray;
-  padding: 30px;
+  padding: 5px 25px;
+  border-radius: 15px;
+  border: 5px solid  rgb(48,48,48); 
+  
 }
 .pokemonToGuessLi{
   background-color:lightgray;
-  padding: 10px;
+  padding: 5px;
+  gap: 5px;
+
+
+  display:flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.pokemonToGuessButton{
+.pokemonToGuess{
   background-color:lightgray;
   border: none;
   cursor: pointer;  
+  font-size:18px;
+  white: 20px;
+}
+
+.PokedexButton{
+  background-color: rgb(255,0,0,0.6);
+  color: white;
+  border: 2px solid rgb(48,48,48);
+
+  height: 30px;
+  width: 70px;
+  margin-top: 5px;
+  
 }
