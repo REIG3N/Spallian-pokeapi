@@ -92,19 +92,25 @@ const App = () => {
   }
 
 useEffect(() => {
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${GenPoke}`)
+  axios.get(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${GenPoke}`)
     .then((response) => {
       console.log(response)
       SetPokeID(GenPoke)
-      const name = response.data.name;
-      console.log(name)
+      const name = response.data.name.fr;
       SetPokemonName(name)
-      const type1 = response.data.types[0].type.name
+      console.log(pokemonName)
+      
+      const type1 = response.data.types[0].name
       SetPokemonType1(type1)
-      const type2 = response.data.types[1]?.type.name
+      console.log(pokemonType1)
+
+      const type2 = response.data.types[1]?.name
       SetPokemonType2(type2)
-      const sprites = response.data.sprites.front_default
+      console.log(pokemonType2)
+
+      const sprites = response.data.sprites.regular
       SetPokemonSprites(sprites)
+      console.log(pokemonSprites)
     }).catch(error => { console.error('Erreur Axios :', error); })
 },[CallAPI])
 
@@ -191,6 +197,8 @@ function ReturnToTitleScreen (){
               SetPokemonsToGuess={SetPokemonsToGuess}
               pokemonsToGuess={pokemonsToGuess}
               round={round}
+              GenPoke={GenPoke}
+              SetGenPoke={SetGenPoke}
             />
           }
         </div>

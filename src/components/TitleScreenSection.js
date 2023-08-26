@@ -17,13 +17,8 @@ export default function TitleScreenSection({
 
 }) {
 
-
-
   const Select = () => {
     SetSelect(true)
-    console.log("-----------select-------------")
-    console.log(select)
-
     SetRound(1)
     SetEndQuizz(false)
     SetScore(0)
@@ -31,8 +26,6 @@ export default function TitleScreenSection({
     SetCallAPI(!CallAPI)
     SetPokemonsToGuess([])
   }
-
-
 
   return (
     <>
