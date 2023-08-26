@@ -118,7 +118,7 @@ const typeImages = {
   Eau: require("./assets/image/water.png"),
   Normal: require("./assets/image/normal.png"),
   Feu: require("./assets/image/fire.png"),
-  Electric: require("./assets/image/electric.png"),
+  Électrik: require("./assets/image/electric.png"),
   Plante: require("./assets/image/grass.png"),
   Ténébres: require("./assets/image/dark.png"),
   Combat: require("./assets/image/fighting.png"),
