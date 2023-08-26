@@ -68,7 +68,8 @@ footer{
   margin: 20px;
   padding: 10px ;
   background-color: lightgray;
-  border: none;
+  border-radius: 15px;
+  border: 5px solid  rgb(48,48,48);
 
   display: flex;
   justify-content:space-around;
@@ -148,7 +149,8 @@ footer{
   display:flex;
   justify-content:center;
   text-align: center;
-  align-items: center;  background-color:white;
+  align-items: center;  
+  background-color:white;
   min-width: 300px;
   border: 5px solid  rgb(48,48,48);
   pointer-events: none;
