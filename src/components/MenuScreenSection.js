@@ -26,7 +26,7 @@ export default function ({
 
   return (
     <div className="SelectScreen">
-      <div className="SelectScreenTitle">Choose the generation of the quizz</div>
+      <div className="SelectScreenTitle">Choisissez la génération des pokemons du quizz</div>
       <div className=" SelectScreenButtons">
         <button onClick={() => Start("Gen1")} className='Button'>GEN 1</button>
         <button onClick={() => Start("Gen2")} className='Button'>GEN 2</button>
@@ -37,7 +37,7 @@ export default function ({
         <button onClick={() => Start("Gen7")} className='Button'>GEN 7</button>
         <button onClick={() => Start("Gen8")} className='Button'>GEN 8</button>
         <button onClick={() => Start("Gen9")} className='Button'>GEN 9</button>
-        <button onClick={() => Start("AllGen")} className='Button'>ALL</button>
+        <button onClick={() => Start("AllGen")} className='Button'>TOUT</button>
       </div>
 
     </div>

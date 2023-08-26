@@ -6,6 +6,7 @@ export default function QuizzSection({
   round,
   pokemonSprites,
   result,
+
 }) {
     const [isLoaded, setIsLoaded] = useState(false);
   
@@ -14,11 +15,11 @@ export default function QuizzSection({
       setIsLoaded(true);
     };
   
-    
+
   return (
     <>
       <div className="quizzHeader">
-        <button onClick={ReturnToTitleScreen} className="returnButton">Return</button>
+        <button onClick={ReturnToTitleScreen} className="returnButton">Retour</button>
         <h3 >PokéQuizz</h3>
         <p>({round}/5)</p>
       </div>

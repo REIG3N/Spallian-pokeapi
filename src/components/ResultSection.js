@@ -22,6 +22,7 @@ const ResultSection = (
     SetPokemonsToGuess,
     NewPokemon,
     currentGenPoke,
+    typeImages
   }) => {
 
 
@@ -63,6 +64,7 @@ const ResultSection = (
         pokemonType2={pokemonType2}
         Show={Show}
         correct={correct}
+        typeImages={typeImages}       
       />
       <div style={{ display: "flex", justifyContent: "center"}}>
         <button onClick={() => Next("Gen1")} className="Button" style={{ display: currentGenPoke === "Gen1" ? 'block' : 'none' }}>NEXT</button>
