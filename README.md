@@ -6,6 +6,10 @@ Pokémon Quiz est une application web développée en utilisant React et Axios q
 
 Ce projet a été réalisé en une semaine et comprend plusieurs fonctionnalités intéressantes, notamment la possibilité de choisir la génération de Pokémon à inclure dans le quiz. À la fin du quiz, vous pouvez également accéder à une page de Pokédex qui répertorie tous les Pokémon qui figuraient dans le quiz.
 
+## Vidéo de présentation
+
+- (https://api-pokemon-fr.vercel.app)
+
 ## Fonctionnalités
 
 - Quiz Pokémon avec des images assombries pour deviner les noms des Pokémon.
@@ -18,11 +22,6 @@ Ce projet a été réalisé en une semaine et comprend plusieurs fonctionnalité
 - React
 - Axios
 - API Pokémon (https://www.loom.com/share/f43a486e83b44acb940d2746fc029068)
-
- 
-## Vidéo de présentation
-
-- (https://api-pokemon-fr.vercel.app)
 
 
 # Installation
