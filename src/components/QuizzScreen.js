@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../styles/quizzscreen.css';
 
 export default function QuizzScreen({ 
   ReturnToTitleScreen,

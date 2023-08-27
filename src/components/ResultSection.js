@@ -1,5 +1,6 @@
 import { useState, } from "react";
 import EndQuizz from "./EndQuizz.js"
+import '../styles/resultsection.css';
 
 const ResultSection = (
   { Show,
@@ -57,8 +58,9 @@ const ResultSection = (
     <>
       <div
         onClick={(e) => { Show(resultDiv, SetResultDiv) }}
-        className='resultButton'>
-        <div style={{ display: "flex", flexDirection: 'row', textAlign: "center", alignItems: 'center' }}><p style={{ paddingRight: '20px' }}>C'est</p>
+        className='resultDiv'
+        >
+        <div className="resultText" ><p className="resultP">C'est</p>
           <p style={{ color: correct ? 'green' : 'red', }}>{pokemonName}</p>
         </div>
         <div>
@@ -66,6 +68,7 @@ const ResultSection = (
           <img className="Img" style={{ display: pokemonType2 ? 'block' : 'none' }} src={typeImages[pokemonType2]} />
         </div>
       </div>
+      
       <div style={{ display: "flex", justifyContent: "center"}}>
         <button onClick={() => Next("Gen1")} className="Button" style={{ display: currentGenPoke === "Gen1" ? 'block' : 'none' }}>NEXT</button>
         <button onClick={() => Next("Gen2")} className="Button" style={{ display: currentGenPoke === "Gen2" ? 'block' : 'none' }}>NEXT</button>

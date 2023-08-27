@@ -1,3 +1,6 @@
+import '../styles/questionsection.css';
+
+
 export default function QuestionSection({
   result,
   anwser,

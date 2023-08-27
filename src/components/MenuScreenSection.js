@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import '../styles/menuscreensection.css';
 
 export default function ({
   SetQuizz,
