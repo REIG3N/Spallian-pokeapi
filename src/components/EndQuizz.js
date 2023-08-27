@@ -101,7 +101,7 @@ export default function EndQuizz({
       <div className="endQuizz" style={{ display: pokedexPage ? 'none' : 'block' }}>
         <h3>Vous avez obtenu {score} sur 5 réponses correctes !</h3>
         <button onClick={ReturnToTitleScreen} className='Button'>RETOUR MENU</button>
-        <h4>Liste des pokémons du quizz :</h4>
+        <h4>Liste des pokémons du quiz :</h4>
 
         {pokemonsToGuess && pokemonsToGuess.map(pokemon => {
           return (

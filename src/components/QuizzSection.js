@@ -20,7 +20,7 @@ export default function QuizzSection({
     <>
       <div className="quizzHeader">
         <button onClick={ReturnToTitleScreen} className="returnButton">Retour</button>
-        <h3 >PokéQuizz</h3>
+        <h3 >PokéQuiz</h3>
         <p>({round}/5)</p>
       </div>
       <div className="imageDiv">
