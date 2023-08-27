@@ -4,9 +4,8 @@ import axios, { Axios } from "axios";
 import ResultSection from "./components/ResultSection.js"
 import EndQuizz from "./components/EndQuizz.js"
 import QuestionSection from "./components/QuestionSection.js"
-import QuizzSection from "./components/QuizzSection.js"
+import QuizzScreen from "./components/QuizzScreen.js"
 import TitleScreenSection from "./components/TitleScreenSection.js"
-import MenuScreenSection from "./components/MenuScreenSection.js"
 
 const App = () => {
   const [quizz, SetQuizz] = useState(false);
@@ -22,7 +21,6 @@ const App = () => {
   const [score, SetScore] = useState(0);
 
   const [CallAPI, SetCallAPI] = useState(true);
-  const [pokeID, SetPokeID] = useState("");
   const [pokemonName, SetPokemonName] = useState('');
   const [pokemonSprites, SetPokemonSprites] = useState('')
   const [pokemonType1, SetPokemonType1] = useState("");
@@ -56,9 +54,7 @@ const App = () => {
       Gen9: RandGen9,
       AllGen: RandAllGen,
     };
-  
     const selectedRandGen = generationMappings[Gen];
-  
     if (selectedRandGen) {
       SetGenPoke(selectedRandGen);
       SetCurrentGenPoke(Gen);
@@ -69,7 +65,6 @@ useEffect(() => {
   axios.get(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${GenPoke}`)
     .then((response) => {
       console.log(response)
-      SetPokeID(GenPoke)
       const name = response.data.name.fr;
       SetPokemonName(name)
       console.log(pokemonName)
@@ -141,7 +136,7 @@ function ReturnToTitleScreen (){
       <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <div className="quizzContainer"  >
           <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
-            <QuizzSection
+            <QuizzScreen
               round={round}
               pokemonSprites={pokemonSprites}
               result={result}

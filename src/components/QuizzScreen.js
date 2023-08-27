@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-
-export default function QuizzSection({ 
+export default function QuizzScreen({ 
   ReturnToTitleScreen,
   round,
   pokemonSprites,

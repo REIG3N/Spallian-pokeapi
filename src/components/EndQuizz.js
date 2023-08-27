@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import '../styles/endquizz.css';
+
 
 export default function EndQuizz({
   score,
