@@ -135,6 +135,7 @@ function ReturnToTitleScreen (){
 
       <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <div className="quizzContainer"  >
+          <div className="quizzResponsive">
           <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
             <QuizzScreen
               round={round}
@@ -181,7 +182,10 @@ function ReturnToTitleScreen (){
                 />
               }
             </div>
-          </div>
+            </div>
+            </div>
+
+
           {endQuizz && !result &&
             <EndQuizz
               score={score}

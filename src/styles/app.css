@@ -43,8 +43,18 @@ footer{
 }
 
 .appContainer{
+ display: flex;
+ flex-direction:column;
+ justify-content: center;
+ text-align: center;
+ align-items: center;
 
-}
+
+/* 
+  position:relative;
+  top: 1%;
+  transform: translateY(1%); */
+} 
 
 .menuScreen{
   display: flex;
@@ -53,8 +63,10 @@ footer{
   align-items: center;
   gap: 15px;
   margin-top: 50px;
+      flex-direction: row;
+    top: 50%;
+    transform: translateY(20%);
 }
-
 
 .titleImg{
   width: 320px;
@@ -71,9 +83,24 @@ footer{
   align-items: center;
   @media screen and (min-width:720px){
     flex-direction: row;
+
   }
 }
-
+.quizzResponsive{
+  margin: 10px;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align: center;
+  align-items: center;
+  top: 1%;
+  transform: translateY(1%);
+  @media screen and (min-width:720px){
+    flex-direction: row;
+    top: 50%;
+    transform: translateY(20%);
+  }
+}
 
 
 .Img{
