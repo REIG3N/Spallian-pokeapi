@@ -44,50 +44,24 @@ const App = () => {
 
 
   const NewPokemon = (Gen) => {
-    if(Gen === "Gen1"){
-      SetGenPoke(RandGen1)
-      SetCurrentGenPoke("Gen1")
-    }
-    else if(Gen === "Gen2"){
-      SetGenPoke(RandGen2)
-      SetCurrentGenPoke("Gen2")
+    const generationMappings = {
+      Gen1: RandGen1,
+      Gen2: RandGen2,
+      Gen3: RandGen3,
+      Gen4: RandGen4,
+      Gen5: RandGen5,
+      Gen6: RandGen6,
+      Gen7: RandGen7,
+      Gen8: RandGen8,
+      Gen9: RandGen9,
+      AllGen: RandAllGen,
+    };
   
-    }
-    else if(Gen === "Gen3"){
-      SetGenPoke(RandGen3)
-      SetCurrentGenPoke("Gen3")
-    }
-    else if(Gen === "Gen4"){
-      SetGenPoke(RandGen4)
-      SetCurrentGenPoke("Gen4")
+    const selectedRandGen = generationMappings[Gen];
   
-    }
-    else if(Gen === "Gen5"){
-      SetGenPoke(RandGen5)
-      SetCurrentGenPoke("Gen5")
-  
-    }
-    else if(Gen === "Gen6"){
-      SetGenPoke(RandGen6)
-      SetCurrentGenPoke("Gen6")
-  
-    }
-    else if(Gen === "Gen7"){
-      SetGenPoke(RandGen7)
-      SetCurrentGenPoke("Gen7")
-  
-    }
-    else if(Gen === "Gen8"){
-      SetGenPoke(RandGen8)
-      SetCurrentGenPoke("Gen8")
-    }
-    else if(Gen === "Gen9"){
-      SetGenPoke(RandGen9)
-      SetCurrentGenPoke("Gen9")
-    }
-    else if(Gen === "AllGen"){
-      SetGenPoke(RandAllGen)
-      SetCurrentGenPoke("AllGen")
+    if (selectedRandGen) {
+      SetGenPoke(selectedRandGen);
+      SetCurrentGenPoke(Gen);
     }
   }
 
