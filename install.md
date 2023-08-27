@@ -1,6 +1,4 @@
-# Run the project without Docker
-
-**if for some reason you can't make docker to work, follow these instructions**
+# Run the project
 
 **However, it might not work unless you have the right version of Node**
 
