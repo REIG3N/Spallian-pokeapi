@@ -21,7 +21,7 @@ Ce projet a été réalisé en une semaine et comprend plusieurs fonctionnalité
 
 - React
 - Axios
-- API Pokémon (https://www.loom.com/share/f43a486e83b44acb940d2746fc029068)
+- API Pokémon ((https://api-pokemon-fr.vercel.app/))
 
 
 # Installation
