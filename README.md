@@ -8,7 +8,7 @@ Ce projet a été réalisé en une semaine et comprend plusieurs fonctionnalité
 
 ## Vidéo de présentation
 
-- (https://api-pokemon-fr.vercel.app)
+- ((https://www.loom.com/share/f43a486e83b44acb940d2746fc029068?sid=760712ac-11bc-470d-b4e8-d02bdffdf277))
 
 ## Fonctionnalités
 
