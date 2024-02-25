@@ -11,7 +11,7 @@ export default function QuestionSection({
   SetScore,
   score,
 }) {
-  
+
   const Enter = () => {
     SetResult(true)
     SetAnwser('')
@@ -28,12 +28,14 @@ export default function QuestionSection({
 
 
   return (
-    <div className="questionSection"  style={{ display: result ? 'none' : 'flex' }}>
-      <div>
-        <h3 >Quelle est ce pokémon ?</h3>
-        <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
+    <>
+      <div className="questionSection" style={{ display: result ? 'none' : 'flex' }}>
+        <div>
+          <h3 >Quelle est ce pokémon ?</h3>
+          <input className="anwserInput" value={anwser} onChange={(e) => { SetAnwser(e.target.value) }} />
+        </div>
+        <button onClick={Enter} className="Button">ENTRER</button>
       </div>
-      <button onClick={Enter} className="Button">ENTRER</button>
-    </div>
+    </>
   )
 }

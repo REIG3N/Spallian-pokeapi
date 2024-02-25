@@ -61,57 +61,51 @@ const App = () => {
     }
   }
 
-useEffect(() => {
-  axios.get(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${GenPoke}`)
-    .then((response) => {
-      console.log(response)
-      const name = response.data.name.fr;
-      SetPokemonName(name)
-      console.log(pokemonName)
-      
-      const type1 = response.data.types[0].name
-      SetPokemonType1(type1)
-      console.log(pokemonType1)
+  useEffect(() => {
+    axios.get(`https://tyradex.vercel.app/api/v1/pokemon/${GenPoke}`)
+      .then((response) => {
+        console.log(response)
+        const name = response.data.name.fr;
+        SetPokemonName(name)
+        console.log(pokemonName)
+        const type1 = response.data.types[0].name
+        SetPokemonType1(type1)
+        const type2 = response.data.types[1]?.name
+        SetPokemonType2(type2)
+        const sprites = response.data.sprites.regular
+        SetPokemonSprites(sprites)
+      }).catch(error => { console.error('Erreur Axios :', error); })
+  }, [CallAPI])
 
-      const type2 = response.data.types[1]?.name
-      SetPokemonType2(type2)
-      console.log(pokemonType2)
+  const typeImages = {
+    Eau: require("./assets/image/water.png"),
+    Normal: require("./assets/image/normal.png"),
+    Feu: require("./assets/image/fire.png"),
+    Électrik: require("./assets/image/electric.png"),
+    Plante: require("./assets/image/grass.png"),
+    Ténébres: require("./assets/image/dark.png"),
+    Combat: require("./assets/image/fighting.png"),
+    Psy: require("./assets/image/psychic.png"),
+    Poison: require("./assets/image/poison.png"),
+    Acier: require("./assets/image/steel.png"),
+    Fée: require("./assets/image/fairy.png"),
+    Dragon: require("./assets/image/dragon.png"),
+    Glace: require("./assets/image/ice.png"),
+    Sol: require("./assets/image/ground.png"),
+    Insecte: require("./assets/image/bug.png"),
+    Spectre: require("./assets/image/ghost.png"),
+    Roche: require("./assets/image/rock.png"),
+    Vol: require("./assets/image/flying.png"),
+  };
 
-      const sprites = response.data.sprites.regular
-      SetPokemonSprites(sprites)
-      console.log(pokemonSprites)
-    }).catch(error => { console.error('Erreur Axios :', error); })
-},[CallAPI])
+  function Show(stateToChange, SetStateToChange) {
+    !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
+  };
 
-const typeImages = {
-  Eau: require("./assets/image/water.png"),
-  Normal: require("./assets/image/normal.png"),
-  Feu: require("./assets/image/fire.png"),
-  Électrik: require("./assets/image/electric.png"),
-  Plante: require("./assets/image/grass.png"),
-  Ténébres: require("./assets/image/dark.png"),
-  Combat: require("./assets/image/fighting.png"),
-  Psy: require("./assets/image/psychic.png"),
-  Poison: require("./assets/image/poison.png"),
-  Acier: require("./assets/image/steel.png"),
-  Fée: require("./assets/image/fairy.png"),
-  Dragon: require("./assets/image/dragon.png"),
-  Glace: require("./assets/image/ice.png"),
-  Sol: require("./assets/image/ground.png"),
-  Insecte: require("./assets/image/bug.png"),
-  Spectre: require("./assets/image/ghost.png"),
-  Roche: require("./assets/image/rock.png"),
-  Vol: require("./assets/image/flying.png"),
-};
-
-function Show (stateToChange, SetStateToChange){
-  !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
-};
-
-function ReturnToTitleScreen (){
-  Show(quizz, SetQuizz)
-  SetSelect(false)
-};
+  function ReturnToTitleScreen() {
+    Show(quizz, SetQuizz)
+    SetSelect(false)
+  };
 
   return (<>
     <div className="appContainer" >
@@ -136,56 +130,54 @@ function ReturnToTitleScreen (){
       <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
         <div className="quizzContainer"  >
           <div className="quizzResponsive">
-          <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
-            <QuizzScreen
-              round={round}
-              pokemonSprites={pokemonSprites}
-              result={result}
-              ReturnToTitleScreen={ReturnToTitleScreen}
-            />
+            <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
+              <QuizzScreen
+                round={round}
+                pokemonSprites={pokemonSprites}
+                result={result}
+                ReturnToTitleScreen={ReturnToTitleScreen}
+              />
+            </div>
+            <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
+              <QuestionSection
+                result={result}
+                anwser={anwser}
+                SetAnwser={SetAnwser}
+                SetResult={SetResult}
+                pokemonName={pokemonName}
+                SetCorrect={SetCorrect}
+                SetScore={SetScore}
+                score={score}
+              />
+              <div className="resultSection">
+                {result && !endQuizz &&
+                  <ResultSection
+                    Show={Show}
+                    resultDiv={resultDiv}
+                    SetResultDiv={SetResultDiv}
+                    correct={correct}
+                    pokemonName={pokemonName}
+                    pokemonType1={pokemonType1}
+                    pokemonType2={pokemonType2}
+                    SetResult={SetResult}
+                    CallAPI={CallAPI}
+                    SetCallAPI={SetCallAPI}
+                    SetAnwser={SetAnwser}
+                    SetRound={SetRound}
+                    round={round}
+                    SetEndQuizz={SetEndQuizz}
+                    score={score}
+                    SetPokemonsToGuess={SetPokemonsToGuess}
+                    pokemonsToGuess={pokemonsToGuess}
+                    NewPokemon={NewPokemon}
+                    currentGenPoke={currentGenPoke}
+                    typeImages={typeImages}
+
+                  />
+                }
+              </div>
+            </div>
           </div>
-          <div className="FormDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
-            <QuestionSection
-              result={result}
-              anwser={anwser}
-              SetAnwser={SetAnwser}
-              SetResult={SetResult}
-              pokemonName={pokemonName}
-              SetCorrect={SetCorrect}
-              SetScore={SetScore}
-              score={score}
-            />
-            <div className="resultSection">
-              {result && !endQuizz &&
-                <ResultSection
-                  Show={Show}
-                  resultDiv={resultDiv}
-                  SetResultDiv={SetResultDiv}
-                  correct={correct}
-                  pokemonName={pokemonName}
-                  pokemonType1={pokemonType1}
-                  pokemonType2={pokemonType2}
-                  SetResult={SetResult}
-                  CallAPI={CallAPI}
-                  SetCallAPI={SetCallAPI}
-                  SetAnwser={SetAnwser}
-                  SetRound={SetRound}
-                  round={round}
-                  SetEndQuizz={SetEndQuizz}
-                  score={score}
-                  SetPokemonsToGuess={SetPokemonsToGuess}
-                  pokemonsToGuess={pokemonsToGuess}
-                  NewPokemon={NewPokemon}
-                  currentGenPoke={currentGenPoke}
-                  typeImages={typeImages}       
-
-                />
-              }
-            </div>
-            </div>
-            </div>
-
-
           {endQuizz && !result &&
             <EndQuizz
               score={score}
@@ -195,8 +187,7 @@ function ReturnToTitleScreen (){
               round={round}
               GenPoke={GenPoke}
               SetGenPoke={SetGenPoke}
-              typeImages={typeImages}       
-
+              typeImages={typeImages}
             />
           }
         </div>

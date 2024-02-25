@@ -41,7 +41,7 @@ export default function EndQuizz({
   }
 
   useEffect(() => {
-    axios.get(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${pokedexName}`)
+    axios.get(`https://tyradex.vercel.app/api/v1/pokemon/${pokedexName}`)
       .then((response) => {
         console.log(response)
         const name = response.data.name.fr;
