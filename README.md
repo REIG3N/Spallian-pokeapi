@@ -1,52 +1,30 @@
-# **Technical test**
+# Pokémon Quiz
 
-# Objective
+## Description
 
-Create a quick React application which consume an API and display the results.
+Pokémon Quiz est une application web développée en utilisant React et Axios qui vous permet de tester vos connaissances sur les Pokémon en devinant leur nom à partir d'une image assombrie. Le jeu utilise l'API api-pokemon-fr (https://api-pokemon-fr.vercel.app) pour obtenir des données sur les Pokémon.
 
-You **must** fork this project, link to your gitlab/github account, and commit to your account on a public repository.
+Ce projet a été réalisé en une semaine et comprend plusieurs fonctionnalités intéressantes, notamment la possibilité de choisir la génération de Pokémon à inclure dans le quiz. À la fin du quiz, vous pouvez également accéder à une page de Pokédex qui répertorie tous les Pokémon qui figuraient dans le quiz.
 
-You can choose any API you want as long as JSON is returned.  
-If you don't have any ideas of API, you can choose between any of these one:
+## Vidéo de présentation
 
-https://openweathermap.org  
-https://pokeapi.co/  
-https://swapi.dev/  
+- ((https://www.loom.com/share/f43a486e83b44acb940d2746fc029068?sid=760712ac-11bc-470d-b4e8-d02bdffdf277))
 
-You will be evaluated on :
+## Fonctionnalités
 
-- How you structure the project
-- How you fetch the data
-- How you transform the data to display it
+- Quiz Pokémon avec des images assombries pour deviner les noms des Pokémon.
+- Sélection de la génération de Pokémon pour personnaliser le quiz.
+- Page de Pokédex qui répertorie tous les Pokémon inclus dans le quiz.
+- Affichage du score pour suivre vos performances.
 
-## Prohibited:
-- Any external help except Google
-- The use of CSS frameworks (tailwind, bootstrap, etc...), CSS **must** be vanilla
+## Technologies utilisées
 
+- React
+- Axios
+- API Pokémon ((https://api-pokemon-fr.vercel.app/))
 
-## Recommendations:
-
-- Librairies are recommended but not necessary:
-    - React Router in case you need it
-    - React Query to fetch the data
-    - anything you want except CSS framework
-
-- The use of hooks.
-- Splitting the code in multiple files
-
-## Bonus:
-
-- Get deeper in how you fetch the data (filters, pagination, etc...)
 
 # Installation
-
 **[Check the tutorial](install.md)**
 
-# Return the test
-
-Send us your gitlab/github link with any information you feel necessary to communicate at this email adress: **dev@spallian.com**
-
-# Help
-
-If you encounter any trouble in installing and running the project, you can contact us at **dev@spallian.com**  
-Provide every usefull information (screenshots, logs, etc...)
+Ce projet a été créé Ryan Bardat: (https://github.com/REIG3N)
