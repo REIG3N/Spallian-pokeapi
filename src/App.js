@@ -1,11 +1,40 @@
-import { useState, useEffect } from "react";
-import axios, { Axios } from "axios";
+import { useState } from "react";
+import pokemonDB from "./data/pokemon.json";
 
 import ResultSection from "./components/ResultSection.js"
 import EndQuizz from "./components/EndQuizz.js"
 import QuestionSection from "./components/QuestionSection.js"
 import QuizzScreen from "./components/QuizzScreen.js"
 import TitleScreenSection from "./components/TitleScreenSection.js"
+
+const GEN_RANGES = {
+  Gen1:   [1,   150],
+  Gen2:   [152, 251],
+  Gen3:   [253, 386],
+  Gen4:   [388, 493],
+  Gen5:   [494, 649],
+  Gen6:   [650, 721],
+  Gen7:   [722, 809],
+  Gen8:   [810, 905],
+  Gen9:   [906, 1010],
+  AllGen: [1,   1010],
+};
+
+function randInRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function pickPokemon(gen) {
+  const [min, max] = GEN_RANGES[gen];
+  let pokemon = null;
+  let tries = 0;
+  while (!pokemon && tries < 20) {
+    const id = randInRange(min, max);
+    pokemon = pokemonDB.find(p => p.id === id);
+    tries++;
+  }
+  return pokemon;
+}
 
 const App = () => {
   const [quizz, SetQuizz] = useState(false);
@@ -20,95 +49,52 @@ const App = () => {
   const [round, SetRound] = useState(1);
   const [score, SetScore] = useState(0);
 
-  const [CallAPI, SetCallAPI] = useState(true);
-  const [pokemonName, SetPokemonName] = useState('');
-  const [pokemonSprites, SetPokemonSprites] = useState('')
-  const [pokemonType1, SetPokemonType1] = useState("");
-  const [pokemonType2, SetPokemonType2] = useState("");
-
-  const [GenPoke, SetGenPoke] = useState(0);
+  const [currentPokemon, SetCurrentPokemon] = useState(null);
   const [currentGenPoke, SetCurrentGenPoke] = useState("");
 
-  const RandAllGen = Math.floor(Math.random() * 1010) + 1;
-  const RandGen1 = Math.floor(Math.random() * 150) + 1;
-  const RandGen2 = Math.floor(Math.random() * 100) + 151 + 1;
-  const RandGen3 = Math.floor(Math.random() * 134) + 252 + 1;
-  const RandGen4 = Math.floor(Math.random() * 106) + 387 + 1;
-  const RandGen5 = Math.floor(Math.random() * 155) + 494 + 1;
-  const RandGen6 = Math.floor(Math.random() * 71) + 650 + 1;
-  const RandGen7 = Math.floor(Math.random() * 87) + 722 + 1;
-  const RandGen8 = Math.floor(Math.random() * 95) + 810 + 1;
-  const RandGen9 = Math.floor(Math.random() * 103) + 906 + 1;
+  const pokemonName    = currentPokemon?.name    ?? '';
+  const pokemonSprites = currentPokemon?.sprite   ?? '';
+  const pokemonType1   = currentPokemon?.types[0] ?? '';
+  const pokemonType2   = currentPokemon?.types[1] ?? '';
 
-
-  const NewPokemon = (Gen) => {
-    const generationMappings = {
-      Gen1: RandGen1,
-      Gen2: RandGen2,
-      Gen3: RandGen3,
-      Gen4: RandGen4,
-      Gen5: RandGen5,
-      Gen6: RandGen6,
-      Gen7: RandGen7,
-      Gen8: RandGen8,
-      Gen9: RandGen9,
-      AllGen: RandAllGen,
-    };
-    const selectedRandGen = generationMappings[Gen];
-    if (selectedRandGen) {
-      SetGenPoke(selectedRandGen);
-      SetCurrentGenPoke(Gen);
-    }
-  }
-
-  useEffect(() => {
-    axios.get(`https://tyradex.vercel.app/api/v1/pokemon/${GenPoke}`)
-      .then((response) => {
-        console.log(response)
-        const name = response.data.name.fr;
-        SetPokemonName(name)
-        console.log(pokemonName)
-        const type1 = response.data.types[0].name
-        SetPokemonType1(type1)
-        const type2 = response.data.types[1]?.name
-        SetPokemonType2(type2)
-        const sprites = response.data.sprites.regular
-        SetPokemonSprites(sprites)
-      }).catch(error => { console.error('Erreur Axios :', error); })
-  }, [CallAPI])
+  const NewPokemon = (gen) => {
+    const pokemon = pickPokemon(gen);
+    SetCurrentPokemon(pokemon);
+    SetCurrentGenPoke(gen);
+  };
 
   const typeImages = {
-    Eau: require("./assets/image/water.png"),
-    Normal: require("./assets/image/normal.png"),
-    Feu: require("./assets/image/fire.png"),
+    Eau:      require("./assets/image/water.png"),
+    Normal:   require("./assets/image/normal.png"),
+    Feu:      require("./assets/image/fire.png"),
     Électrik: require("./assets/image/electric.png"),
-    Plante: require("./assets/image/grass.png"),
+    Plante:   require("./assets/image/grass.png"),
     Ténébres: require("./assets/image/dark.png"),
-    Combat: require("./assets/image/fighting.png"),
-    Psy: require("./assets/image/psychic.png"),
-    Poison: require("./assets/image/poison.png"),
-    Acier: require("./assets/image/steel.png"),
-    Fée: require("./assets/image/fairy.png"),
-    Dragon: require("./assets/image/dragon.png"),
-    Glace: require("./assets/image/ice.png"),
-    Sol: require("./assets/image/ground.png"),
-    Insecte: require("./assets/image/bug.png"),
-    Spectre: require("./assets/image/ghost.png"),
-    Roche: require("./assets/image/rock.png"),
-    Vol: require("./assets/image/flying.png"),
+    Combat:   require("./assets/image/fighting.png"),
+    Psy:      require("./assets/image/psychic.png"),
+    Poison:   require("./assets/image/poison.png"),
+    Acier:    require("./assets/image/steel.png"),
+    Fée:      require("./assets/image/fairy.png"),
+    Dragon:   require("./assets/image/dragon.png"),
+    Glace:    require("./assets/image/ice.png"),
+    Sol:      require("./assets/image/ground.png"),
+    Insecte:  require("./assets/image/bug.png"),
+    Spectre:  require("./assets/image/ghost.png"),
+    Roche:    require("./assets/image/rock.png"),
+    Vol:      require("./assets/image/flying.png"),
   };
 
   function Show(stateToChange, SetStateToChange) {
-    !stateToChange ? SetStateToChange(!stateToChange) : SetStateToChange(!stateToChange)
-  };
+    SetStateToChange(!stateToChange);
+  }
 
   function ReturnToTitleScreen() {
-    Show(quizz, SetQuizz)
-    SetSelect(false)
-  };
+    Show(quizz, SetQuizz);
+    SetSelect(false);
+  }
 
   return (<>
-    <div className="appContainer" >
+    <div className="appContainer">
 
       <div className="menuScreen" style={{ display: quizz ? 'none' : 'block' }}>
         <TitleScreenSection
@@ -117,8 +103,6 @@ const App = () => {
           SetEndQuizz={SetEndQuizz}
           SetScore={SetScore}
           SetResult={SetResult}
-          CallAPI={CallAPI}
-          SetCallAPI={SetCallAPI}
           SetPokemonsToGuess={SetPokemonsToGuess}
           NewPokemon={NewPokemon}
           select={select}
@@ -126,11 +110,10 @@ const App = () => {
         />
       </div>
 
-
       <div className="mainDiv" style={{ display: quizz ? 'block' : 'none' }}>
-        <div className="quizzContainer"  >
+        <div className="quizzContainer">
           <div className="quizzResponsive">
-            <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }} >
+            <div className="quizzDiv" style={{ display: endQuizz ? 'none' : 'block' }}>
               <QuizzScreen
                 round={round}
                 pokemonSprites={pokemonSprites}
@@ -160,8 +143,6 @@ const App = () => {
                     pokemonType1={pokemonType1}
                     pokemonType2={pokemonType2}
                     SetResult={SetResult}
-                    CallAPI={CallAPI}
-                    SetCallAPI={SetCallAPI}
                     SetAnwser={SetAnwser}
                     SetRound={SetRound}
                     round={round}
@@ -172,7 +153,6 @@ const App = () => {
                     NewPokemon={NewPokemon}
                     currentGenPoke={currentGenPoke}
                     typeImages={typeImages}
-
                   />
                 }
               </div>
@@ -185,15 +165,12 @@ const App = () => {
               SetPokemonsToGuess={SetPokemonsToGuess}
               pokemonsToGuess={pokemonsToGuess}
               round={round}
-              GenPoke={GenPoke}
-              SetGenPoke={SetGenPoke}
               typeImages={typeImages}
             />
           }
         </div>
       </div>
     </div>
-  </>
-  );
+  </>);
 }
 export default App;

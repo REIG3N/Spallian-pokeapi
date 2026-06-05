@@ -1,6 +1,5 @@
 import titleImg from "../assets/image/title.png"
 import MenuScreenSection from "./MenuScreenSection.js"
-import { useState, useEffect } from "react";
 
 export default function TitleScreenSection({
   SetQuizz,
@@ -8,30 +7,26 @@ export default function TitleScreenSection({
   SetEndQuizz,
   SetScore,
   SetResult,
-  CallAPI,
-  SetCallAPI,
   SetPokemonsToGuess,
   select,
   SetSelect,
   NewPokemon,
-
 }) {
 
   const Select = () => {
-    SetSelect(true)
-    SetRound(1)
-    SetEndQuizz(false)
-    SetScore(0)
-    SetResult(false)
-    SetCallAPI(!CallAPI)
-    SetPokemonsToGuess([])
-  }
+    SetSelect(true);
+    SetRound(1);
+    SetEndQuizz(false);
+    SetScore(0);
+    SetResult(false);
+    SetPokemonsToGuess([]);
+  };
 
   return (
     <>
       <div style={{ display: select ? 'none' : 'block' }}>
-        <div className="titleScreen" >
-          <img src={titleImg} className="titleImg" />
+        <div className="titleScreen">
+          <img src={titleImg} className="titleImg" alt="title" />
         </div>
         <button onClick={Select} className='Button'>SELECT</button>
       </div>
@@ -42,12 +37,10 @@ export default function TitleScreenSection({
           SetEndQuizz={SetEndQuizz}
           SetScore={SetScore}
           SetResult={SetResult}
-          CallAPI={CallAPI}
-          SetCallAPI={SetCallAPI}
           SetPokemonsToGuess={SetPokemonsToGuess}
           NewPokemon={NewPokemon}
         />
       </div>
     </>
-  )
+  );
 }
